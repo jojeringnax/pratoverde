@@ -48,6 +48,7 @@ class Room extends \yii\db\ActiveRecord
         ];
     }
 
+
     /**
      * @return array|\yii\db\ActiveRecord[]
      */

@@ -40,7 +40,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'comment',
             [
                 'label' => 'Room Number',
-                'value' => $model->getRoomNumber()
+                'value' => Html::a(
+                        $model->getRoomNumber(),
+                        \yii\helpers\Url::to(
+                                [
+                                    'room/view',
+                                    'id' => $model->room_id
+                                ]
+                        )
+                )
             ],
             [
                 'label' => 'Status',

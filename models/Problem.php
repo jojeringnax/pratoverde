@@ -13,7 +13,7 @@ use Yii;
  * @property string $comment
  * @property int $room_id
  *
- * @property Rooms $room
+ * @property Room $room
  */
 class Problem extends \yii\db\ActiveRecord
 {
@@ -56,6 +56,6 @@ class Problem extends \yii\db\ActiveRecord
      */
     public function getRoom()
     {
-        return $this->hasOne(Rooms::className(), ['id' => 'room_id']);
+        return $this->hasOne(Room::className(), ['id' => 'room_id']);
     }
 }

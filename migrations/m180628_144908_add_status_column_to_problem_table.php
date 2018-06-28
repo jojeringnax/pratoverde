@@ -12,7 +12,7 @@ class m180628_144908_add_status_column_to_problem_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('problems', 'status', 'string(32)');
+        $this->addColumn('problems', 'status', 'smallint(6)');
     }
 
     /**

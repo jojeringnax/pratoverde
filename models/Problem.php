@@ -12,6 +12,7 @@ use yii\db\ActiveRecord;
  * @property string $place
  * @property string $comment
  * @property int $room_id
+ * @property string $status
  *
  * @property Room $room
  */
@@ -28,6 +29,10 @@ class Problem extends ActiveRecord
         'Room',
         'Toilet'
     ];
+
+    public static $statuses = [
+      0
+    ];
     /**
      * {@inheritdoc}
      */
@@ -43,6 +48,7 @@ class Problem extends ActiveRecord
     {
         return [
             [['category', 'place', 'comment'], 'string'],
+            [['status', 'category', 'place', 'comment'], 'required'],
             [['room_id'], 'integer'],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
         ];

@@ -31,12 +31,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             [
                 'label' => 'Category',
-                'value' => \app\models\Problem::$categories[$model->category]
+                'value' => $model->getTextCategory()
             ],
-            'place',
+            [
+                'label' => 'Place',
+                'value' => $model->getTextPlace()
+            ],
             'comment',
             'room_id',
-            'status'
+            [
+                'label' => 'Status',
+                'value' => $model->getTextStatus()
+            ]
         ],
     ]) ?>
 

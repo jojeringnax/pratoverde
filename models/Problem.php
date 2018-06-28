@@ -89,11 +89,27 @@ class Problem extends ActiveRecord
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTextStatus()
     {
         return self::$statuses[$this->status];
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextCategory()
+    {
+        return self::$statuses[$this->category];
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextPlace()
+    {
+        return self::$places[$this->place];
     }
 
     /**

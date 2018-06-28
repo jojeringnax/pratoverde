@@ -29,7 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'category',
+            [
+                'label' => 'Category',
+                'value' => \app\models\Problem::$categories[$model->category]
+            ],
             'place',
             'comment',
             'room_id',

@@ -33,7 +33,7 @@ class Problem extends \yii\db\ActiveRecord
         return [
             [['category', 'place', 'comment'], 'string'],
             [['room_id'], 'integer'],
-            [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rooms::className(), 'targetAttribute' => ['room_id' => 'id']],
+            [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
         ];
     }
 

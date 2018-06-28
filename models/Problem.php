@@ -18,6 +18,9 @@ use yii\db\ActiveRecord;
  */
 class Problem extends ActiveRecord
 {
+    /**
+     * @var array
+     */
     public static $categories = [
         'Doors/Windows',
         'Floor/Walls/Roof',
@@ -25,14 +28,23 @@ class Problem extends ActiveRecord
         'Sanitary'
     ];
 
+    /**
+     * @var array
+     */
     public static $places = [
         'Room',
         'Toilet'
     ];
 
+    /**
+     * @var array
+     */
     public static $statuses = [
-      0
+        'New Problem',
+        'In progress',
+        'Solved'
     ];
+
     /**
      * {@inheritdoc}
      */
@@ -74,5 +86,24 @@ class Problem extends ActiveRecord
     public function getRoom()
     {
         return $this->hasOne(Room::className(), ['id' => 'room_id']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTextStatus()
+    {
+        return self::$statuses[$this->status];
+    }
+
+    /**
+     * @param null $roomId
+     * @return $this|array|ActiveRecord[]
+     */
+    public static function getUnresolvedProblems($roomId=null)
+    {
+        return $roomId === null ?
+            self::find()->where(['status' => [1,2]])->all() :
+            self::find()->where(['status' => [1,2], 'room_id' => $roomId])->all();
     }
 }

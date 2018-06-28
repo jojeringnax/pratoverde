@@ -17,8 +17,8 @@ class ProblemSearch extends Problem
     {
         return [
             [['id'], 'integer'],
-            [['category'], 'in', ['Doors/Windows', 'Floor/Walls/Roof']],
-            [['place'], 'in', ['Room', 'Toilet']],
+            [['category'], 'in', 'range' => ['Doors/Windows', 'Floor/Walls/Roof']],
+            [['place'], 'string', 'range' => ['Room', 'Toilet']],
             [['category', 'place', 'comment'], 'safe'],
         ];
     }

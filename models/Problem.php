@@ -19,6 +19,26 @@ use yii\db\ActiveRecord;
 class Problem extends ActiveRecord
 {
     /**
+     * @var string
+     */
+    public $textCategory;
+
+    /**
+     * @var string
+     */
+    public $textPlace;
+
+    /**
+     * @var string
+     */
+    public $textStatus;
+
+    /**
+     * @var integer
+     */
+    public $roomNumber;
+
+    /**
      * @var array
      */
     public static $categories = [
@@ -44,6 +64,15 @@ class Problem extends ActiveRecord
         'In progress',
         'Solved'
     ];
+
+    public function __construct(array $config = [])
+    {
+        parent::__construct($config);
+        $this->textCategory = $this->getTextCategory();
+        $this->textPlace = $this->getTextPlace();
+        $this->roomNumber = $this->getRoomNumber();
+        $this->textStatus = $this->getTextStatus();
+    }
 
     /**
      * {@inheritdoc}
@@ -91,7 +120,7 @@ class Problem extends ActiveRecord
     /**
      * @return string
      */
-    public function getTextStatus()
+    private function getTextStatus()
     {
         return self::$statuses[$this->status];
     }
@@ -99,7 +128,7 @@ class Problem extends ActiveRecord
     /**
      * @return string
      */
-    public function getTextCategory()
+    private function getTextCategory()
     {
         return self::$categories[$this->category];
     }
@@ -107,12 +136,12 @@ class Problem extends ActiveRecord
     /**
      * @return string
      */
-    public function getTextPlace()
+    private function getTextPlace()
     {
         return self::$places[$this->place];
     }
 
-    public function getRoomNumber()
+    private function getRoomNumber()
     {
         return $this->room->number;
     }

@@ -31,17 +31,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             [
                 'label' => 'Category',
-                'value' => $model->getTextCategory()
+                'value' => $model->textCategory
             ],
             [
                 'label' => 'Place',
-                'value' => $model->getTextPlace()
+                'value' => $model->textPlace
             ],
             'comment',
             [
                 'label' => 'Room Number',
                 'value' => Html::a(
-                        $model->getRoomNumber(),
+                        $model->roomNumber,
                         \yii\helpers\Url::to(
                                 [
                                     'room/view',
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'label' => 'Status',
-                'value' => $model->getTextStatus()
+                'value' => $model->textStatus
             ]
         ],
     ]) ?>

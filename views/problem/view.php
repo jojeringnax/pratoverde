@@ -32,6 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'category',
             'place',
             'comment',
+            'room_id',
+            'status'
         ],
     ]) ?>
 

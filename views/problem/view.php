@@ -38,7 +38,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->getTextPlace()
             ],
             'comment',
-            'room_id',
+            [
+                'label' => 'Room Number',
+                'value' => $model->getRoomNumber()
+            ],
             [
                 'label' => 'Status',
                 'value' => $model->getTextStatus()

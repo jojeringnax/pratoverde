@@ -112,6 +112,11 @@ class Problem extends ActiveRecord
         return self::$places[$this->place];
     }
 
+    public function getRoomNumber()
+    {
+        return $this->room->number;
+    }
+
     /**
      * @param null $roomId
      * @return $this|array|ActiveRecord[]

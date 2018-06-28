@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "problems".
@@ -15,8 +15,19 @@ use Yii;
  *
  * @property Room $room
  */
-class Problem extends \yii\db\ActiveRecord
+class Problem extends ActiveRecord
 {
+    public static $categories = [
+        'Doors/Windows',
+        'Floor/Walls/Roof',
+        'Furniture',
+        'Sanitary'
+    ];
+
+    public static $places = [
+        'Room',
+        'Toilet'
+    ];
     /**
      * {@inheritdoc}
      */
@@ -33,6 +44,8 @@ class Problem extends \yii\db\ActiveRecord
         return [
             [['category', 'place', 'comment'], 'string'],
             [['room_id'], 'integer'],
+            [['category'], 'in', 'range' => self::$categories, 'message' => 'No'],
+            [['place'], 'in', 'range' => self::$places, 'message' => 'Nope'],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
         ];
     }

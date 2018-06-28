@@ -12,11 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'category')->dropDownList(\app\models\Problem::$categories) ?>
 
-    <?= $form->field($model, 'place')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'place')->dropDownList(\app\models\Problem::$places) ?>
 
-    <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'room_id')->label('Room number')->dropDownList(\app\models\Room::getAllNumbers()) ?>
 

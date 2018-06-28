@@ -101,7 +101,7 @@ class Problem extends ActiveRecord
      */
     public function getTextCategory()
     {
-        return self::$statuses[$this->category];
+        return self::$categories[$this->category];
     }
 
     /**

@@ -47,4 +47,12 @@ class Room extends \yii\db\ActiveRecord
             'comment' => 'Comment',
         ];
     }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllIdsForNumbers()
+    {
+        return self::find()->asArray()->all();
+    }
 }

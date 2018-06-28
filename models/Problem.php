@@ -44,8 +44,6 @@ class Problem extends ActiveRecord
         return [
             [['category', 'place', 'comment'], 'string'],
             [['room_id'], 'integer'],
-            [['category'], 'in', 'range' => self::$categories, 'message' => 'No'],
-            [['place'], 'in', 'range' => self::$places, 'message' => 'Nope'],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
         ];
     }

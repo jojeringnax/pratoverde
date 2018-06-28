@@ -53,6 +53,6 @@ class Room extends \yii\db\ActiveRecord
      */
     public static function getAllIdsForNumbers()
     {
-        return self::find()->asArray()->all();
+        return self::find()->all(['id']);
     }
 }

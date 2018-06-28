@@ -48,7 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'id' => $model->room_id
                                 ]
                         )
-                )
+                ),
+                'format' => 'asUrl'
             ],
             [
                 'label' => 'Status',

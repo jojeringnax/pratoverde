@@ -18,7 +18,9 @@ class m180628_151734_create_table_problems extends Migration
             'place'    => $this->tinyInteger()->notNull(),
             'comment' => $this->string(),
             'room_id' => $this->integer(),
-            'status' => $this->tinyInteger()
+            'status' => $this->tinyInteger(),
+            'created_at' => $this->dateTime(),
+            'updated_at' => 'timestamp on update current_timestamp'
         ]);
 
         $this->addForeignKey(
@@ -36,6 +38,9 @@ class m180628_151734_create_table_problems extends Migration
      */
     public function safeDown()
     {
+        if($this->dropTable('problems')) {
+            return true;
+        };
         echo "m180628_151734_create_table_problems cannot be reverted.\n";
 
         return false;

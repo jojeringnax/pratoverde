@@ -52,8 +52,11 @@ class Room extends \yii\db\ActiveRecord
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public static function getAllIdsForNumbers()
+    public static function getAllNumbers()
     {
-        return self::find()->select('id')->asArray()->all();
+        foreach (self::find()->all() as $room) {
+            $result[] = $room->number;
+        }
+        return $result;
     }
 }

@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ]
                         )
                 ),
-                'format' => 'asUrl'
+                'format' => 'raw'
             ],
             [
                 'label' => 'Status',

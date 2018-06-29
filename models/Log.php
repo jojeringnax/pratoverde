@@ -23,6 +23,14 @@ use yii\db\ActiveRecord;
 class Log extends ActiveRecord
 {
 
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'logs';
+    }
+
     public static function write($message)
     {
         $log = new self;

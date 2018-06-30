@@ -17,7 +17,7 @@ class ProblemSearch extends Problem
     {
         return [
             [['id'], 'integer'],
-            [['category', 'place', 'comment'], 'safe'],
+            [['TextCategory', 'TextPlace', 'comment'], 'safe'],
         ];
     }
 
@@ -42,7 +42,6 @@ class ProblemSearch extends Problem
         $query = Problem::find();
 
         // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -51,7 +50,7 @@ class ProblemSearch extends Problem
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+            //$query->where('0=1');
             return $dataProvider;
         }
 
@@ -63,7 +62,6 @@ class ProblemSearch extends Problem
         $query->andFilterWhere(['like', 'category', $this->category])
             ->andFilterWhere(['like', 'place', $this->place])
             ->andFilterWhere(['like', 'comment', $this->comment]);
-
         return $dataProvider;
     }
 }

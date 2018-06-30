@@ -22,24 +22,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            [
-                'label' => 'Category',
-                'value' => 'textCategory'
-            ],
-            [
-                'label' => 'Place',
-                'value' => 'textPlace'
-            ],
+            'TextCategory',
+            'TextPlace',
             'comment',
-            [
-                'label' => 'Status',
-                'value' => 'textStatus'
-            ],
+            'TextStatus',[
+            'label' => 'Room Number',
+                'value' => 'RoomNumber',
+                'content' => function($model) {
+                        return Html::a($model->getRoomNumber(), \yii\helpers\Url::to(['room/view','id' => $model->room->id]));
+                    },
+                'format' => 'raw'],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

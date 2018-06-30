@@ -54,9 +54,9 @@ class Room extends \yii\db\ActiveRecord
      */
     public static function getAllNumbers()
     {
-        foreach (self::find()->all() as $room) {
+        foreach (Room::find()->all() as $room) {
             $result[$room->id] = $room->number;
         }
-        return $result;
+        return isset($result) ? $result : [];
     }
 }

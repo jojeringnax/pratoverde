@@ -65,15 +65,6 @@ class Problem extends ActiveRecord
         'Solved'
     ];
 
-    public function __construct(array $config = [])
-    {
-        parent::__construct($config);
-        $this->textCategory = $this->getTextCategory();
-        $this->textPlace = $this->getTextPlace();
-        $this->roomNumber = $this->getRoomNumber();
-        $this->textStatus = $this->getTextStatus();
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -110,6 +101,12 @@ class Problem extends ActiveRecord
     }
 
     /**
+     *
+     * Getters
+     *
+     */
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getRoom()
@@ -117,35 +114,63 @@ class Problem extends ActiveRecord
         return $this->hasOne(Room::className(), ['id' => 'room_id']);
     }
 
+
     /**
      * @return string
      */
-    private function getTextStatus()
+    public function getTextStatus()
     {
+        if (!in_array($this->status, range(0,count(self::$statuses)-1)) || $this->status === null) {
+            return null;
+        }
         return self::$statuses[$this->status];
     }
 
     /**
      * @return string
      */
-    private function getTextCategory()
+    public function getTextCategory()
     {
+        if (!in_array($this->category, range(0, count(self::$categories)-1)) || $this->category === null) {
+            return null;
+        }
         return self::$categories[$this->category];
     }
 
     /**
      * @return string
      */
-    private function getTextPlace()
+    public function getTextPlace()
     {
-        return self::$places[$this->place];
+        if (!in_array($this->place, range(0, count(self::$places)-1)) || $this->place === null) {
+            return null;
+        }
+        return self::$places[$this->category];
     }
 
-    private function getRoomNumber()
+    public function getRoomNumber()
     {
+        if (!is_integer($this->room_id)) {
+            return null;
+        }
         return $this->room->number;
     }
 
+    /**
+     *
+     * Setters
+     *
+     */
+
+    public function setTextCategory($category)
+    {
+
+    }
+
+    public function setTextPlace($place)
+    {
+        $this->textPlace = $place;
+    }
     /**
      * @param null $roomId
      * @return $this|array|ActiveRecord[]

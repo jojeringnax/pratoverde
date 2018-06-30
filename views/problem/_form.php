@@ -20,11 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'room_id')->label('Room number')->dropDownList(\app\models\Room::getAllNumbers()) ?>
 
-    <?= $form->field($model, 'status')->dropDownList([
-        0 => ['label' => 'New Problem'],
-        1 => ['label' => 'In progress'],
-        2 => ['label' => 'Solved']
-    ]) ?>
+    <?= $form->field($model, 'status')->dropDownList(\app\models\Problem::$statuses) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

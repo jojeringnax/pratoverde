@@ -14,6 +14,15 @@ use Yii;
  */
 class Room extends \yii\db\ActiveRecord
 {
+
+    public $countProblems;
+
+    public function __construct(array $config = [])
+    {
+        parent::__construct($config);
+        $this->countProblems = $this->getCountProblems();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -58,5 +67,21 @@ class Room extends \yii\db\ActiveRecord
             $result[$room->id] = $room->number;
         }
         return isset($result) ? $result : [];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProblems()
+    {
+       return $this->hasMany(Problem::className(), ['room_id' => 'id']);
+    }
+
+    /**
+     * @return int
+     */
+    public function getCountProblems()
+    {
+        return count($this->problems);
     }
 }

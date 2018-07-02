@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Room */
 
-$this->title = $model->id;
+$this->title = 'Room #'.$model->number;
 $this->params['breadcrumbs'][] = ['label' => 'Rooms', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,11 +28,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'number',
             'type',
             'comment',
         ],
     ]) ?>
+
+    <?= \yii\grid\GridView::widget([
+        'dataProvider' => $problemsProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'id',
+            'TextCategory',
+            'TextPlace',
+            'comment',
+            'TextStatus',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'controller' => 'problem'
+            ]
+        ]
+    ]); ?>
 
 </div>

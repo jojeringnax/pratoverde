@@ -2,9 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\Problem;
+use app\models\ProblemSearch;
 use Yii;
 use app\models\Room;
 use app\models\RoomSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -52,8 +55,23 @@ class RoomController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $problems = Problem::find()->where(['room_id' => $id]);
+        $problemsProvider = new ActiveDataProvider([
+            'query' => $problems,
+            'pagination' => [
+                'pageSize' => 10
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_ASC,
+                    'status' => SORT_ASC
+                ]
+            ]
+        ]);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'problemsProvider' => $problemsProvider
         ]);
     }
 

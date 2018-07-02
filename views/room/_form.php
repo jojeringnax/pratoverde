@@ -3,10 +3,12 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Room */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+
 
 <div class="room-form">
 
@@ -14,9 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'number')->textInput() ?>
 
-    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'type')->dropDownList(Yii::$app->params['roomTypes']) ?>
 
-    <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

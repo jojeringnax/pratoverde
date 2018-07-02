@@ -15,11 +15,29 @@ use Yii;
 class Room extends \yii\db\ActiveRecord
 {
 
+    /**
+     * @var array
+     */
+    public static $types;
+
+    /**
+     * @var int
+     */
     public $countProblems;
 
+    /**
+     * @var string
+     */
+    public $textType;
+
+    /**
+     * Room constructor.
+     * @param array $config
+     */
     public function __construct(array $config = [])
     {
         parent::__construct($config);
+        $this->textType = $this->getTranslatedParams()['roomTypes'][(integer) $this->type];
         $this->countProblems = $this->getCountProblems();
     }
 
@@ -39,7 +57,7 @@ class Room extends \yii\db\ActiveRecord
         return [
             [['number'], 'required'],
             [['number'], 'integer'],
-            [['type', 'comment'], 'string', 'max' => 255],
+            [['comment'], 'string', 'max' => 255],
             [['number'], 'unique'],
         ];
     }
@@ -51,9 +69,9 @@ class Room extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'number' => 'Number',
-            'type' => 'Type',
-            'comment' => 'Comment',
+            'number' => Yii::t('app', 'Number'),
+            'type' => Yii::t('app', 'Type'),
+            'comment' => Yii::t('app', 'Comment'),
         ];
     }
 
@@ -83,5 +101,13 @@ class Room extends \yii\db\ActiveRecord
     public function getCountProblems()
     {
         return count($this->problems);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextType()
+    {
+       return $this->textType;
     }
 }

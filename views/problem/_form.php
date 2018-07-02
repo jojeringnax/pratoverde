@@ -12,15 +12,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category')->dropDownList(\app\models\Problem::$categories) ?>
+    <?= $form->field($model, 'category')->dropDownList(Yii::$app->params['problemCategories']) ?>
 
-    <?= $form->field($model, 'place')->dropDownList(\app\models\Problem::$places) ?>
+    <?= $form->field($model, 'place')->dropDownList(Yii::$app->params['problemPlaces']) ?>
 
     <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'room_id')->label('Room number')->dropDownList(\app\models\Room::getAllNumbers()) ?>
+    <?= $form->field($model, 'room_id')->label(Yii::t('app','Room number'))->dropDownList(\app\models\Room::getAllNumbers()) ?>
 
-    <?= $form->field($model, 'status')->dropDownList(\app\models\Problem::$statuses) ?>
+    <?= $form->field($model, 'status')->dropDownList(Yii::$app->params['problemStatuses']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

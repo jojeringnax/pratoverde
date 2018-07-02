@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Room */
 
-$this->title = 'Room #'.$model->number;
-$this->params['breadcrumbs'][] = ['label' => 'Rooms', 'url' => ['index']];
+$this->title = Yii::t('app', 'Room').' #'.$model->number;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Rooms'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="room-view">
@@ -15,21 +15,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>
     </p>
-
+    <?= $model->getTextType() ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'number',
-            'type',
+            [
+                'label' => Yii::t('app', 'Type'),
+                'value' => $model->textType
+            ],
             'comment',
         ],
     ]) ?>
@@ -39,10 +42,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'id',
-            'TextCategory',
-            'TextPlace',
+            [
+                 'label' => Yii::t('app', 'Category'),
+                'value' => 'TextCategory'
+            ],
+            [
+                'label' => Yii::t('app', 'Place'),
+                'value' => 'TextPlace'
+            ],
             'comment',
-            'TextStatus',
+            [
+                'label' => Yii::t('app', 'Status'),
+                'value' => 'TextStatus'
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'controller' => 'problem'

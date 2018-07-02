@@ -745,4 +745,22 @@ class ActiveRecord extends BaseActiveRecord
 
         return isset($transactions[$scenario]) && ($transactions[$scenario] & $operation);
     }
+
+    /**
+     * @return array
+     */
+    protected function getTranslatedParams()
+    {
+        $params = Yii::$app->params;
+        $translatedParams = [];
+        foreach ($params as $param => $value) {
+            if(is_array($value)) {
+                foreach ($value as $message) {
+                    if(is_string($message))
+                        $translatedParams[$param][] = Yii::t('app', $message);
+                }
+            }
+        }
+        return $translatedParams;
+    }
 }

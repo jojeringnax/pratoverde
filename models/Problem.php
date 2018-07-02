@@ -39,33 +39,6 @@ class Problem extends ActiveRecord
     public $roomNumber;
 
     /**
-     * @var array
-     */
-    public static $categories = [
-        'Doors/Windows',
-        'Floor/Walls/Roof',
-        'Furniture',
-        'Sanitary'
-    ];
-
-    /**
-     * @var array
-     */
-    public static $places = [
-        'Room',
-        'Toilet'
-    ];
-
-    /**
-     * @var array
-     */
-    public static $statuses = [
-        'New Problem',
-        'In progress',
-        'Solved'
-    ];
-
-    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -93,10 +66,10 @@ class Problem extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category' => 'Category',
-            'place' => 'Place',
-            'comment' => 'Comment',
-            'room_id' => 'Room ID',
+            'category' => \Yii::t('app','Category'),
+            'place' => \Yii::t('app', 'Place'),
+            'comment' => \Yii::t('app','Comment'),
+            'room_id' => \Yii::t('app', 'Room').' ID',
         ];
     }
 
@@ -120,10 +93,7 @@ class Problem extends ActiveRecord
      */
     public function getTextStatus()
     {
-        if (!in_array($this->status, range(0,count(self::$statuses)-1)) || $this->status === null) {
-            return null;
-        }
-        return self::$statuses[$this->status];
+        return $this->getTranslatedParams()['problemStatuses'][(integer) $this->status];
     }
 
     /**
@@ -131,10 +101,7 @@ class Problem extends ActiveRecord
      */
     public function getTextCategory()
     {
-        if (!in_array($this->category, range(0, count(self::$categories)-1)) || $this->category === null) {
-            return null;
-        }
-        return self::$categories[$this->category];
+        return $this->getTranslatedParams()['problemCategories'][(integer) $this->category];
     }
 
     /**
@@ -142,10 +109,7 @@ class Problem extends ActiveRecord
      */
     public function getTextPlace()
     {
-        if (!in_array($this->place, range(0, count(self::$places)-1)) || $this->place === null) {
-            return null;
-        }
-        return self::$places[$this->category];
+        return $this->getTranslatedParams()['problemPlaces'][(integer) $this->category];
     }
 
     public function getRoomNumber()
@@ -156,21 +120,6 @@ class Problem extends ActiveRecord
         return $this->room->number;
     }
 
-    /**
-     *
-     * Setters
-     *
-     */
-
-    public function setTextCategory($category)
-    {
-
-    }
-
-    public function setTextPlace($place)
-    {
-        $this->textPlace = $place;
-    }
     /**
      * @param null $roomId
      * @return $this|array|ActiveRecord[]

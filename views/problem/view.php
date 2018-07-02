@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Problem */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Problem', 'url' => ['index']];
+$this->title = Yii::t('app', 'Problem').' #'.$model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Problems'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="problem-view">
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app','Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -30,16 +30,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             [
-                'label' => 'Category',
+                'label' => Yii::t('app','Category'),
                 'value' => $model->getTextCategory()
             ],
             [
-                'label' => 'Place',
+                'label' => Yii::t('app','Place'),
                 'value' => $model->getTextPlace()
             ],
             'comment',
             [
-                'label' => 'Room Number',
+                'label' => Yii::t('app','Room number'),
                 'value' => Html::a(
                         $model->getRoomNumber(),
                         \yii\helpers\Url::to(
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw'
             ],
             [
-                'label' => 'Status',
+                'label' => Yii::t('app','Status'),
                 'value' => $model->getTextStatus()
             ]
         ],

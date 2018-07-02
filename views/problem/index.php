@@ -6,18 +6,18 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProblemSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $model \app\models\Problem */
 
-$this->title = 'Problems';
+$this->title = Yii::t('app','Problems');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="problem-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Problem', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app','Create problem'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,11 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'TextCategory',
-            'TextPlace',
+            [
+                'label' => Yii::t('app', 'Category'),
+                'value' => 'TextCategory'
+            ],
+            [
+                'label' => Yii::t('app', 'Place'),
+                'value' => 'TextPlace'
+            ],
             'comment',
-            'TextStatus',[
-            'label' => 'Room Number',
+            [
+                'label' => Yii::t('app', 'Status'),
+                'value' => 'TextStatus'
+            ], [
+                'label' => Yii::t('app','Room number'),
                 'value' => 'RoomNumber',
                 'content' => function($model) {
                         return Html::a($model->getRoomNumber(), \yii\helpers\Url::to(['room/view','id' => $model->room->id]));

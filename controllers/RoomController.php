@@ -3,12 +3,11 @@
 namespace app\controllers;
 
 use app\models\Problem;
-use app\models\ProblemSearch;
 use Yii;
 use app\models\Room;
-use app\models\RoomSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
+use yii\web\Cookie;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -38,12 +37,34 @@ class RoomController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new RoomSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->request->isPost) {
+            $language = Yii::$app->request->post('language');
+
+            $languageCookie = new Cookie([
+                'name' => 'language',
+                'value' => $language,
+                'expire' => time() + 60 * 60 * 24 * 30,
+            ]);
+            $languageCookie->init();
+
+            Yii::$app->response->cookies->add($languageCookie);
+            $this->refresh();
+        }
+        $query = Room::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 10
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'number' => SORT_ASC,
+                ]
+            ]
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider
         ]);
     }
 

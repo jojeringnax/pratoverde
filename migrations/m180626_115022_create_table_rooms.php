@@ -15,7 +15,7 @@ class m180626_115022_create_table_rooms extends Migration
         $this->createTable('rooms',[
             'id'      => $this->primaryKey(),
             'number'  => $this->tinyInteger()->notNull()->unique(),
-            'type'    => $this->string()->defaultValue('normal'),
+            'type'    => $this->tinyInteger()->notNull(),
             'comment' => $this->string()
         ]);
 
@@ -26,7 +26,13 @@ class m180626_115022_create_table_rooms extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('news');
+        try {
+            $this->dropTable('rooms');
+        } catch(Exception $e) {
+            echo $e->getTraceAsString();
+            return false;
+        }
+        return true;
     }
 
     /*

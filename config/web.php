@@ -4,9 +4,15 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'basic',
+    'id' => 'pratoverde',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'language' => 'en',
+    'bootstrap' =>[
+        [
+            'class' => 'app\components\LanguageSelector',
+            'supportedLanguages' => ['en', 'it'],
+        ],
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',

@@ -38,11 +38,13 @@ class m180628_151734_create_table_problems extends Migration
      */
     public function safeDown()
     {
-        if($this->dropTable('problems')) {
+        try{
+            $this->dropTable('problems');
             return true;
-        };
-        echo "m180628_151734_create_table_problems cannot be reverted.\n";
-
+        } catch(Exception $e) {
+            echo 'Gets something wrecked'.$e->getTraceAsString();
+            echo "m180628_151734_create_table_problems cannot be reverted.\n";
+        }
         return false;
     }
 

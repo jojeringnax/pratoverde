@@ -749,7 +749,7 @@ class ActiveRecord extends BaseActiveRecord
     /**
      * @return array
      */
-    protected function getTranslatedParams()
+    public static function getTranslatedParams()
     {
         $params = Yii::$app->params;
         $translatedParams = [];

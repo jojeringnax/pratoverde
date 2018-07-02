@@ -5,6 +5,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Room */
+/* @var $problemsProvider \yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Room').' #'.$model->number;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Rooms'), 'url' => ['index']];
@@ -24,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-    <?= $model->getTextType() ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [

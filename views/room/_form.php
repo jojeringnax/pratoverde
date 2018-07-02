@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'number')->textInput() ?>
 
-    <?= $form->field($model, 'type')->dropDownList(Yii::$app->params['roomTypes']) ?>
+    <?= $form->field($model, 'type')->dropDownList(\yii\db\ActiveRecord::getTranslatedParams()['roomTypes']) ?>
 
     <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
 

@@ -87,6 +87,14 @@ class Problem extends ActiveRecord
         return $this->hasOne(Room::className(), ['id' => 'room_id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPhotos()
+    {
+        return $this->hasMany(Photo::className(), ['problem_id' => 'id']);
+    }
+
 
     /**
      * @return string
@@ -130,4 +138,6 @@ class Problem extends ActiveRecord
             self::find()->where(['status' => [1,2]])->all() :
             self::find()->where(['status' => [1,2], 'room_id' => $roomId])->all();
     }
+
+
 }

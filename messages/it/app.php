@@ -9,7 +9,7 @@
  * Each array element represents the translation (value) of a message (key).
  * If the value is empty, the message is considered as not translated.
  * Messages that no longer need translation will have their translations
- * enclosed between a pair of '@@' marks.
+ * enclosed between a pair of '' marks.
  *
  * Message string can be used with plural forms format. Check i18n section
  * of the guide for details.
@@ -17,19 +17,29 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Are you sure you want to delete this item?' => 'Sei sicuro di voler eliminare questo elemento?',
-    'Buthtub/Two Room' => 'Con vasca/Doppia',
-    'Category' => 'Categoria',
     'Comment' => '',
-    'Create problem' => 'Creare problema',
-    'Create room' => 'Creare camera',
-    'Delete' => 'Elimina',
+    'ID' => '',
+    'Link To Photo' => '',
+    'Problem ID' => '',
+    'Room ID' => '',
+    'Server Path' => '',
+    'Buthtub/Two Room' => 'Con vasca/Doppia',
     'Doors/Windows' => 'Porte/finestre',
     'Floor/Walls/Roof' => 'Pavimento/Parete/Soffitto',
     'Furniture' => 'Mobili',
     'In progress' => 'In corso',
     'New Problem' => 'Nuovo problema',
     'Normal' => 'Normale',
+    'Sanitary' => 'Idraulico',
+    'Solved' => 'Risolto',
+    'Terrace' => 'Terrazza',
+    'Terrace/Buthtub' => 'Terazza/Con vasca',
+    'Toilet' => 'Toilette',
+    'Are you sure you want to delete this item?' => 'Sei sicuro di voler eliminare questo elemento?',
+    'Category' => 'Categoria',
+    'Create problem' => 'Creare problema',
+    'Create room' => 'Creare camera',
+    'Delete' => 'Elimina',
     'Number' => 'Numero',
     'Number of problems' => 'Numero di problemi',
     'Place' => 'Località',
@@ -38,13 +48,8 @@ return [
     'Room' => 'Camera',
     'Room number' => 'Numero di camera',
     'Rooms' => 'Cameri',
-    'Sanitary' => 'Idraulico',
-    'Solved' => 'Risolto',
     'Status' => 'Stato',
-    'Terrace' => 'Terrazza',
-    'Terrace/Buthtub' => 'Terazza/Con vasca',
-    'Toilet' => 'Toilette',
     'Type' => 'Tipo',
     'Update' => 'Aggiorna',
-    'Update Problem: ' => 'Aggiorna il problema: '
+    'Update Problem: ' => 'Aggiorna il problema: ',
 ];

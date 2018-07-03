@@ -13,13 +13,13 @@ class m180628_151734_create_table_problems extends Migration
     public function safeUp()
     {
         $this->createTable('problems',[
-            'id'      => $this->primaryKey(),
-            'category'  => $this->tinyInteger()->notNull(),
-            'place'    => $this->tinyInteger()->notNull(),
-            'comment' => $this->string(),
-            'room_id' => $this->integer(),
-            'status' => $this->tinyInteger(),
-            'created_at' => $this->dateTime(),
+            'id'         => $this->primaryKey(),
+            'category'   => $this->tinyInteger()->notNull(),
+            'place'      => $this->tinyInteger()->notNull(),
+            'comment'    => $this->string(),
+            'room_id'    => $this->integer(),
+            'status'     => $this->tinyInteger(),
+            'created_at' => $this->timestamp(),
             'updated_at' => 'timestamp on update current_timestamp'
         ]);
 

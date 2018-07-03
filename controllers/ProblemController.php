@@ -2,12 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\Photo;
 use Yii;
 use app\models\Problem;
 use app\models\ProblemSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProblemController implements the CRUD actions for Problem model.
@@ -88,11 +90,20 @@ class ProblemController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            $photo = new Photo();
+            $photo->file = UploadedFile::getInstance($photo,'file');
+            if ($photo->upload()) {
+                return $this->render('view', ['model' => $model]);
+            }
+
         }
 
+        $photos = $model->photos;
+
         return $this->render('update', [
-            'model' => $model,
+            'model'  => $model,
+            'photos' => $photos
         ]);
     }
 

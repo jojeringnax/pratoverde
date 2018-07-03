@@ -22,6 +22,20 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status')->dropDownList(\yii\db\ActiveRecord::getTranslatedParams()['problemStatuses']) ?>
 
+    <label class="control-label" for="photos">Photo</label>
+
+    <input class="form-control" name="Photo" id="photos" type="file" />
+
+
+    <?php if($photos != null) { ?>
+        <div class="row photos_container">
+            <?php foreach ($photos as $photo) { ?>
+                <div class="col-lg-4">
+                    <img width="100%" src="<?= $photo->link_to_photo ?>" />
+                </div>
+           <?php } ?>
+        </div>
+    <?php }; ?>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

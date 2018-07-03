@@ -9,7 +9,7 @@
  * Each array element represents the translation (value) of a message (key).
  * If the value is empty, the message is considered as not translated.
  * Messages that no longer need translation will have their translations
- * enclosed between a pair of '@@' marks.
+ * enclosed between a pair of '' marks.
  *
  * Message string can be used with plural forms format. Check i18n section
  * of the guide for details.
@@ -18,29 +18,38 @@
  */
 return [
     'Are you sure you want to delete this item?' => '',
-    'Buthtub/Two Room' => '',
     'Category' => '',
     'Comment' => '',
+    'Create problem' => '',
     'Create room' => '',
     'Delete' => '',
+    'ID' => '',
+    'Link To Photo' => '',
+    'Number' => '',
+    'Number of problems' => '',
+    'Place' => '',
+    'Problem' => '',
+    'Problem ID' => '',
+    'Problems' => '',
+    'Room' => '',
+    'Room ID' => '',
+    'Room number' => '',
+    'Rooms' => '',
+    'Server Path' => '',
+    'Status' => '',
+    'Type' => '',
+    'Update' => '',
+    'Update Problem: ' => '',
+    'Buthtub/Two Room' => '',
     'Doors/Windows' => '',
     'Floor/Walls/Roof' => '',
     'Furniture' => '',
     'In progress' => '',
     'New Problem' => '',
     'Normal' => '',
-    'Number' => '',
-    'Number of problems' => '',
-    'Place' => '',
-    'Room' => '',
-    'Room number' => '',
-    'Rooms' => '',
     'Sanitary' => '',
     'Solved' => '',
-    'Status' => '',
     'Terrace' => '',
     'Terrace/Buthtub' => '',
     'Toilet' => '',
-    'Type' => '',
-    'Update' => '',
 ];

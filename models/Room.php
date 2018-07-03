@@ -96,6 +96,14 @@ class Room extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPhotos()
+    {
+        return $this->hasMany(Photo::className(), ['room_id' => 'id']);
+    }
+
+    /**
      * @return int
      */
     public function getCountProblems()

@@ -25,6 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+    <pre><?= print_r($files) ?></pre>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [

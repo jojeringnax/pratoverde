@@ -81,7 +81,7 @@ class ProblemController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id)
         ]);
     }
 
@@ -123,11 +123,8 @@ class ProblemController extends Controller
             }
         }
 
-        $photos = $model->photos;
-
         return $this->render('update', [
-            'model'  => $model,
-            'photos' => $photos
+            'model'  => $model
         ]);
     }
 

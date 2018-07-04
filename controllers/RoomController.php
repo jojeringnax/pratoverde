@@ -3,8 +3,11 @@
 namespace app\controllers;
 
 use app\models\Problem;
+use http\Url;
 use Yii;
 use app\models\Room;
+use app\models\Photo;
+use yii\web\UploadedFile;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\Cookie;
@@ -29,6 +32,31 @@ class RoomController extends Controller
                 ],
             ],
         ];
+    }
+
+    /**
+     * @param $model
+     * @return bool
+     */
+    private function addPhoto($model)
+    {
+        $photo = new Photo();
+
+        $photo->file = UploadedFile::getInstance($photo,'file');
+
+        if ($photo->file === null) {
+            return true;
+        }
+
+        $webPath = '/images/room_photos/room_'.$model->id.'_'.(count($model->photos) + 1).'.'.$photo->file->extension;
+        $serverPath = '/public_html/pratoverde/web'.$webPath;
+
+        $photo->category = 'Room';
+        $photo->server_path = $serverPath;
+        $photo->link_to_photo = $webPath;
+        $photo->room_id = $model->id;
+
+        return $photo->upload();
     }
 
     /**
@@ -92,7 +120,8 @@ class RoomController extends Controller
         ]);
         return $this->render('view', [
             'model' => $model,
-            'problemsProvider' => $problemsProvider
+            'problemsProvider' => $problemsProvider,
+            'photos' => $model->photos
         ]);
     }
 
@@ -106,7 +135,10 @@ class RoomController extends Controller
         $model = new Room();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            if ($this->addPhoto($model)) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
@@ -126,11 +158,14 @@ class RoomController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if ($this->addPhoto($model)) {
+                return $this->redirect(\yii\helpers\Url::toRoute(['room/view', 'id' => $model->id]));
+            }
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'model'  => $model,
+            'photos' => $model->photos
         ]);
     }
 

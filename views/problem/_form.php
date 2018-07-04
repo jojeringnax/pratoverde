@@ -22,12 +22,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status')->dropDownList(\yii\db\ActiveRecord::getTranslatedParams()['problemStatuses']) ?>
 
-    <label class="control-label" for="photos">Photo</label>
+    <?= $form->field(new \app\models\Photo(), 'file')->fileInput() ?>
 
-    <input class="form-control" name="Photo" id="photos" type="file" />
-
-
-    <?php if($photos != null) { ?>
+    <?php if(isset($photos) && $photos != null && Yii::$app->controller->action->id == 'update') { ?>
         <div class="row photos_container">
             <?php foreach ($photos as $photo) { ?>
                 <div class="col-lg-4">
@@ -37,7 +34,7 @@ use yii\widgets\ActiveForm;
         </div>
     <?php }; ?>
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app','Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

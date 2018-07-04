@@ -33,6 +33,31 @@ class ProblemController extends Controller
     }
 
     /**
+     * @param $model
+     * @return bool
+     */
+    private function addPhoto($model)
+    {
+        $photo = new Photo();
+
+        $photo->file = UploadedFile::getInstance($photo,'file');
+
+        if ($photo->file === null) {
+            return true;
+        }
+
+        $webPath = '/images/problem_photos/problem_'.$model->id.'_'.(count($model->photos) + 1).'.'.$photo->file->extension;
+        $serverPath = '/public_html/pratoverde/web'.$webPath;
+
+        $photo->category = 'Problem';
+        $photo->server_path = $serverPath;
+        $photo->link_to_photo = $webPath;
+        $photo->problem_id = $model->id;
+
+        return $photo->upload();
+    }
+
+    /**
      * Lists all Problem models.
      * @return mixed
      */
@@ -70,7 +95,10 @@ class ProblemController extends Controller
         $model = new Problem();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+           if ($this->addPhoto($model)) {
+               return $this->redirect(['view', 'id' => $model->id]);
+           }
         }
 
         return $this->render('create', [
@@ -90,13 +118,9 @@ class ProblemController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            $photo = new Photo();
-            $photo->file = UploadedFile::getInstance($photo,'file');
-            if ($photo->upload()) {
+            if ($this->addPhoto($model)) {
                 return $this->render('view', ['model' => $model]);
             }
-
         }
 
         $photos = $model->photos;

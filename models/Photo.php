@@ -42,12 +42,12 @@ class Photo extends ActiveRecord
     {
         return [
             [['room_id', 'problem_id'], 'integer'],
-            [['server_path'], 'string', 'max' => 64],
+            [['server_path'], 'string', 'max' => 128],
             [['link_to_photo'], 'string', 'max' => 128],
             [['category'], 'string', 'max' => 10],
             [['problem_id'], 'exist', 'skipOnError' => true, 'targetClass' => Problem::className(), 'targetAttribute' => ['problem_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
-            [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -98,28 +98,25 @@ class Photo extends ActiveRecord
         return count($this->problem->photos) + 1;
     }
 
-    /**
-     * @return string
-     */
-    public function getRoomOrProblem()
-    {
-        return $this->problem_id === null ? $this->room->className() : $this->problem->className();
-    }
-
 
     /**
      * @return bool
      */
     public function upload()
     {
-        if($this->validate()) {
-            $roomOrProblem = $this->getRoomOrProblem();
-            $roomOrProblemLower = strtolower($roomOrProblem);
-            $nameMethodForNextPhoto = 'getNextNumberPhotoFor'.$roomOrProblem;
-            $necessary_ID = $this->$roomOrProblemLower->id;
-            $this->file->saveAs('images/'.$this->category.'_photos/'.$this->category.'_'.$necessary_ID.'_'.$this->$nameMethodForNextPhoto().$this->file->extension);
+            $categoryLower = strtolower($this->category);
+            $nameMethodForNextPhoto = 'getNextNumberForPhotoFor'.$this->category;
+
+            $necessary_ID = $this->$categoryLower->id;
+
+            $path = 'images/'.
+                $this->category.
+                '_photos/'.
+                $this->category.'_'.$necessary_ID.'_'.$this->$nameMethodForNextPhoto().
+                '.'.$this->file->extension;
+            $this->file->saveAs($path);
+            $this->file = $path;
+            $this->save();
             return true;
-        }
-        return false;
     }
 }

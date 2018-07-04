@@ -14,7 +14,7 @@ class m180703_085233_create_table_photos extends Migration
     {
         $this->createTable('photos', [
             'id' => $this->primaryKey(),
-            'server_path' => $this->string(64),
+            'server_path' => $this->string(128),
             'link_to_photo' => $this->string(128),
             'category' => $this->string(10),
             'room_id' => $this->integer(),

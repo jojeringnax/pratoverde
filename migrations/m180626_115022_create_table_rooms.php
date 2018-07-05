@@ -16,7 +16,10 @@ class m180626_115022_create_table_rooms extends Migration
             'id'      => $this->primaryKey(),
             'number'  => $this->tinyInteger()->notNull()->unique(),
             'type'    => $this->tinyInteger()->notNull(),
-            'comment' => $this->string()
+            'comment' => $this->string(),
+            'facilities' => $this->string(),
+            'smoking' => $this->tinyInteger(1),
+            'state' => $this->string(16)
         ]);
 
     }

@@ -19,7 +19,7 @@ class m180628_151734_create_table_problems extends Migration
             'comment'    => $this->string(),
             'room_id'    => $this->integer(),
             'status'     => $this->tinyInteger(),
-            'created_at' => $this->timestamp(),
+            'created_at' => $this->dateTime()->defaultExpression('current_timestamp'),
             'updated_at' => 'timestamp on update current_timestamp'
         ]);
 

@@ -19,6 +19,7 @@ class m180703_085233_create_table_photos extends Migration
             'category' => $this->string(10),
             'room_id' => $this->integer(),
             'problem_id' => $this->integer(),
+            'uploaded_at' => $this->dateTime()->defaultExpression('current_timestamp')
         ]);
 
         $this->addForeignKey(

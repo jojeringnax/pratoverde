@@ -34,6 +34,7 @@ if (!empty($model->photos)) {
 /* @var $this yii\web\View */
 /* @var $model app\models\Room */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $facilities \app\models\Facility[] */
 ?>
 
 
@@ -47,7 +48,23 @@ if (!empty($model->photos)) {
 
     <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'smoking')->checkbox(['', $model->smoking]) ?>
+
     <?= $form->field(new \app\models\Photo(), 'file')->fileInput() ?>
+
+    <div class="form-group field-room-facilities">
+
+        <label class="control-label">Facilities</label>
+            <input type="hidden" name="Room[facilities]" value />
+            <div class="room-facilities">
+                <?php foreach($facilities as $facilityId => $facilityName) { ?>
+                    <label>
+                        <input type="checkbox" name="Room[facilities][]" value="<?= $facilityId ?>" <?= Yii::$app->controller->action->id === 'update' && in_array($facilityId, $modelFacilitiesIDs)  ? 'checked' : '' ?> />
+                        <?= $facilityName ?>
+                    </label>
+                <?php } ?>
+            </div>
+    </div>
 
     <?php if(isset($model->photos) && $model->photos != null && Yii::$app->controller->action->id == 'update') { ?>
         <?php if(!empty($model->photos)) { ?>

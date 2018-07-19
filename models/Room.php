@@ -3,32 +3,35 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "rooms".
  *
  * @property int $id
  * @property int $number
- * @property string $type
+ * @property int $type
  * @property string $comment
+ * @property string $facilities
+ * @property int $smoking
+ * @property string $state
+ * @property int $room_view_photo_id
+ * @property int $toilet_view_photo_id
+ *
+ * @property Booking[] $bookings
+ * @property Photo[] $photos
+ * @property Problem[] $problems
+ * @property Photo $roomViewPhoto
+ * @property Photo $toiletViewPhoto
  */
 class Room extends \yii\db\ActiveRecord
 {
-
-    /**
-     * @var array
-     */
-    public static $types;
 
     /**
      * @var int
      */
     public $countProblems;
 
-    /**
-     * @var string
-     */
-    public $textType;
 
     /**
      * Room constructor.
@@ -37,7 +40,6 @@ class Room extends \yii\db\ActiveRecord
     public function __construct(array $config = [])
     {
         parent::__construct($config);
-        $this->textType = $this->getTranslatedParams()['roomTypes'][(integer) $this->type];
         $this->countProblems = $this->getCountProblems();
     }
 
@@ -55,10 +57,13 @@ class Room extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['number'], 'required'],
-            [['number'], 'integer'],
-            [['comment'], 'string', 'max' => 255],
+            [['number', 'type'], 'required'],
+            [['number', 'type', 'smoking', 'room_view_photo_id', 'toilet_view_photo_id'], 'integer'],
+            [['comment', 'facilities'], 'string', 'max' => 255],
+            [['state'], 'string', 'max' => 16],
             [['number'], 'unique'],
+            [['room_view_photo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Photo::className(), 'targetAttribute' => ['room_view_photo_id' => 'id']],
+            [['toilet_view_photo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Photo::className(), 'targetAttribute' => ['toilet_view_photo_id' => 'id']],
         ];
     }
 
@@ -68,10 +73,15 @@ class Room extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => Yii::t('app', 'ID'),
             'number' => Yii::t('app', 'Number'),
             'type' => Yii::t('app', 'Type'),
             'comment' => Yii::t('app', 'Comment'),
+            'facilities' => Yii::t('app', 'Facilities'),
+            'smoking' => Yii::t('app', 'Smoking'),
+            'state' => Yii::t('app', 'State'),
+            'room_view_photo_id' => Yii::t('app', 'Room View Photo ID'),
+            'toilet_view_photo_id' => Yii::t('app', 'Toilet View Photo ID'),
         ];
     }
 
@@ -104,6 +114,30 @@ class Room extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBookings()
+    {
+        return $this->hasMany(Booking::className(), ['room_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRoomViewPhoto()
+    {
+        return $this->hasOne(Photo::className(), ['id' => 'room_view_photo_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getToiletViewPhoto()
+    {
+        return $this->hasOne(Photo::className(), ['id' => 'toilet_view_photo_id']);
+    }
+
+    /**
      * @return int
      */
     public function getCountProblems()
@@ -116,6 +150,20 @@ class Room extends \yii\db\ActiveRecord
      */
     public function getTextType()
     {
-       return $this->textType;
+        return ActiveRecord::getTranslatedParams()['roomTypes'][$this->type];
+    }
+
+    public function getFacilities()
+    {
+        return $this->facilities;
+    }
+
+    /**
+     * @return array[]|false|string[]
+     */
+    public function getFacilitiesIDsAsArray()
+    {
+         return preg_split('/,/', $this->facilities);
+
     }
 }

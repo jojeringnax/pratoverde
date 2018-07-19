@@ -25,9 +25,15 @@ class m180704_190359_create_table_facilities extends Migration
      */
     public function safeDown()
     {
-        echo "m180704_190359_create_table_facilities cannot be reverted.\n";
-
-        return false;
+        try {
+            $this->dropTable('facilities');
+            return true;
+        } catch (Exception $e) {
+            echo "m180704_190359_create_table_facilities cannot be reverted.\n";
+            echo $e->getMessage();
+            echo $e->getTraceAsString();
+            return false;
+        }
     }
 
     /*

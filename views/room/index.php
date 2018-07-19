@@ -3,12 +3,12 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\RoomSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Rooms');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="room-index">
     <?= Html::beginForm() ?>
     <?= Html::dropDownList('language', Yii::$app->language, ['en' => 'English', 'it' => 'Italiano']) ?>
@@ -20,6 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Create room'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
+    <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -35,7 +37,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'CountProblems'
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete} {book}',
+                'buttons' => [
+                    'book' => function($model, $key, $index) {
+                        return Html::a('<span class="glyphicon glyphicon-book">', \yii\helpers\Url::to(['booking/create', 'room_id' => $key->id]));
+                    }
+                ]
+            ],
         ],
     ]); ?>
+
+    <?php \yii\widgets\Pjax::end(); ?>
 </div>

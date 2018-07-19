@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m180704_183731_create_table_customers
+ * Class m180704_182735_create_table_customers
  */
-class m180704_183731_create_table_customers extends Migration
+class m180704_182735_create_table_customers extends Migration
 {
     /**
      * {@inheritdoc}
@@ -42,9 +42,15 @@ class m180704_183731_create_table_customers extends Migration
      */
     public function safeDown()
     {
-        echo "m180704_183731_create_table_customers cannot be reverted.\n";
-
-        return false;
+        try {
+            $this->dropTable('customers');
+            return true;
+        } catch (Exception $e) {
+            echo "customers cannot be reverted.\n";
+            echo $e->getMessage();
+            echo $e->getTraceAsString();
+            return false;
+        }
     }
 
     /*

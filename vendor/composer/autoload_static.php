@@ -20,6 +20,7 @@ class ComposerStaticInit1da89475c78473765976fcf690f78dca
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\jui\\' => 8,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
@@ -30,6 +31,10 @@ class ComposerStaticInit1da89475c78473765976fcf690f78dca
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
+        ),
+        'f' => 
+        array (
+            'filsh\\datepicker\\' => 17,
         ),
         'c' => 
         array (
@@ -83,6 +88,10 @@ class ComposerStaticInit1da89475c78473765976fcf690f78dca
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
         ),
+        'yii\\jui\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-jui',
+        ),
         'yii\\gii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-gii/src',
@@ -112,6 +121,10 @@ class ComposerStaticInit1da89475c78473765976fcf690f78dca
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'filsh\\datepicker\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/',
         ),
         'cebe\\markdown\\' => 
         array (
@@ -195,8 +208,8 @@ class ComposerStaticInit1da89475c78473765976fcf690f78dca
         ),
         'Codeception\\' => 
         array (
-            0 => __DIR__ . '/..' . '/codeception/base/src/Codeception',
-            1 => __DIR__ . '/..' . '/codeception/stub/src',
+            0 => __DIR__ . '/..' . '/codeception/stub/src',
+            1 => __DIR__ . '/..' . '/codeception/base/src/Codeception',
         ),
     );
 

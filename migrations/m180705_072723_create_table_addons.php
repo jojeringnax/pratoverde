@@ -28,9 +28,15 @@ class m180705_072723_create_table_addons extends Migration
      */
     public function safeDown()
     {
-        echo "m180705_072723_create_table_addons cannot be reverted.\n";
-
-        return false;
+        try {
+            $this->dropTable('addons');
+            return true;
+        } catch (Exception $e) {
+            echo "m180705_072723_create_table_addons cannot be reverted.\n";
+            echo $e->getMessage();
+            echo $e->getTraceAsString();
+            return false;
+        }
     }
 
     /*

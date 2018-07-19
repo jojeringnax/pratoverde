@@ -40,7 +40,6 @@ if (!empty($model->photos)) {
 }
 ?>
 <div class="room-view">
-
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
@@ -59,9 +58,10 @@ if (!empty($model->photos)) {
             'number',
             [
                 'label' => Yii::t('app', 'Type'),
-                'value' => $model->textType
+                'value' => $model->getTextType()
             ],
             'comment',
+            'facilities'
         ],
     ]) ?>
 

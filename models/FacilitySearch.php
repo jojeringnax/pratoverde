@@ -2,13 +2,15 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use app\models\Facility;
 
 /**
- * ProblemSearch represents the model behind the search form of `app\models\Problem`.
+ * FacilitySearch represents the model behind the search form of `app\models\Facility`.
  */
-class ProblemSearch extends Problem
+class FacilitySearch extends Facility
 {
     /**
      * {@inheritdoc}
@@ -17,7 +19,7 @@ class ProblemSearch extends Problem
     {
         return [
             [['id'], 'integer'],
-            [['TextCategory', 'TextPlace', 'comment'], 'safe'],
+            [['name', 'comment'], 'safe'],
         ];
     }
 
@@ -39,9 +41,10 @@ class ProblemSearch extends Problem
      */
     public function search($params)
     {
-        $query = Problem::find();
+        $query = Facility::find();
 
         // add conditions that should always apply here
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -50,18 +53,18 @@ class ProblemSearch extends Problem
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
-            //$query->where('0=1');
+            // $query->where('0=1');
             return $dataProvider;
         }
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id
+            'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'category', $this->category])
-            ->andFilterWhere(['like', 'place', $this->place])
+        $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'comment', $this->comment]);
+
         return $dataProvider;
     }
 }

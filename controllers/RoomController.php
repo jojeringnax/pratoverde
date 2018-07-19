@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Facility;
 use app\models\Problem;
-use http\Url;
 use Yii;
 use app\models\Room;
 use app\models\Photo;
@@ -35,7 +35,7 @@ class RoomController extends Controller
     }
 
     /**
-     * @param $model
+     * @param $model Room
      * @return bool
      */
     private function addPhoto($model)
@@ -60,6 +60,28 @@ class RoomController extends Controller
     }
 
     /**
+     * @param $model Room
+     * @param $facilitiesFromPost
+     * @return bool
+     */
+    private function getFacilitiesAsString($model, $facilitiesFromPost) {
+
+        $facilitiesArray = [];
+        if (empty($facilitiesFromPost) || !isset($facilitiesFromPost)) {
+            return null;
+        }
+
+        foreach ($facilitiesFromPost as $facilityID) {
+            $facility = Facility::findOne($facilityID);
+            $facilitiesArray[] = $facility->name;
+        }
+
+        $facilitiesAsString = implode(',',$facilitiesArray);
+
+        return $facilitiesAsString;
+    }
+
+    /**
      * Lists all Room models.
      * @return mixed
      */
@@ -73,6 +95,7 @@ class RoomController extends Controller
                 'value' => $language,
                 'expire' => time() + 60 * 60 * 24 * 30,
             ]);
+
             $languageCookie->init();
 
             Yii::$app->response->cookies->add($languageCookie);
@@ -134,15 +157,31 @@ class RoomController extends Controller
     {
         $model = new Room();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $facilities = Facility::getArrayIdToName();
 
-            if ($this->addPhoto($model)) {
-                return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isPost) {
+
+            $roomPost = Yii::$app->request->post()['Room'];
+
+            $facilitiesFromPost = $roomPost['facilities'];
+            $stringFacilitiesFromPost = $this->getFacilitiesAsString($model, $facilitiesFromPost);
+
+            $model->number = $roomPost['number'];
+            $model->type = $roomPost['type'];
+            $model->comment = $roomPost['comment'];
+            $model->smoking = $roomPost['smoking'];
+            $model->facilities = $stringFacilitiesFromPost;
+
+            if($model->save()) {
+                if ($this->addPhoto($model)) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             }
         }
 
         return $this->render('create', [
             'model' => $model,
+            'facilities' => $facilities
         ]);
     }
 
@@ -157,24 +196,58 @@ class RoomController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if ($this->addPhoto($model)) {
-                return $this->redirect(\yii\helpers\Url::toRoute(['room/view', 'id' => $model->id]));
+        $facilities = Facility::getArrayIdToName();
+
+        /**
+         * Facilities checked
+         */
+        $modelFacilitiesIDs = [];
+        if ($model->facilities !== null) {
+
+            $modelFacilities = $model->getFacilitiesIDsAsArray();
+
+            foreach ($modelFacilities as $modelFacility) {
+                if (Facility::getByName($modelFacility) !== null) {
+                    $modelFacilitiesIDs[] = Facility::getByName($modelFacility)->id;
+                }
             }
+        }
+
+        if (Yii::$app->request->isPost) {
+
+            $roomPost = Yii::$app->request->post()['Room'];
+
+            $facilitiesFromPost = $roomPost['facilities'];
+            $stringFacilitiesFromPost = $this->getFacilitiesAsString($model, $facilitiesFromPost);
+
+            $model->number = $roomPost['number'];
+            $model->type = $roomPost['type'];
+            $model->comment = $roomPost['comment'];
+            $model->smoking = $roomPost['smoking'];
+            $model->facilities = $stringFacilitiesFromPost;
+
+            if ($model->save()) {
+                if ($this->addPhoto($model)) {
+                    return $this->redirect(\yii\helpers\Url::toRoute(['room/view', 'id' => $model->id]));
+                }
+            }
+
         }
 
         return $this->render('update', [
             'model'  => $model,
-            'photos' => $model->photos
+            'facilities' => $facilities,
+            'modelFacilitiesIDs' => $modelFacilitiesIDs
         ]);
     }
 
     /**
-     * Deletes an existing Room model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @param $id
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     * @throws \Exception
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {

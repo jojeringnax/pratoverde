@@ -12,12 +12,14 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "beta",
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.0.0"
+        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "yiisoft/yii2-jui": "*",
+        "bower-asset/bootstrap-datepicker": "*@stable"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -27,6 +29,11 @@
         "codeception/base": "^2.2.3",
         "codeception/verify": "~0.3.1",
         "codeception/specify": "~0.4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "filsh\\datepicker\\": ""
+        }
     },
     "config": {
         "process-timeout": 1800,

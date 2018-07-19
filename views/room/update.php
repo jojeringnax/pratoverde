@@ -4,6 +4,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Room */
+/* @var $facilities array */
+/* @var $modelFacilitiesIDs array */
 
 $this->title = Yii::t('app', 'Update').' '.Yii::t('app', 'Room').': ' . $model->number;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app','Rooms'), 'url' => ['index']];
@@ -15,7 +17,9 @@ $this->params['breadcrumbs'][] = Yii::t('app','Update');
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
-        'model' => $model
+        'model' => $model,
+        'facilities' => $facilities,
+        'modelFacilitiesIDs' => $modelFacilitiesIDs
     ]) ?>
 
 

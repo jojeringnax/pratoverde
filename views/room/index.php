@@ -33,11 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'comment',
             [
-                'label' => Yii::t('app', 'Number of problems'),
-                'value' => 'CountProblems'
-            ],
-
-            [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {delete} {book}',
                 'buttons' => [

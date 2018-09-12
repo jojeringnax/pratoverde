@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Customer;
 use Yii;
 use app\models\Booking;
+use yii\base\Module;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -14,6 +16,15 @@ use yii\filters\VerbFilter;
  */
 class BookingController extends Controller
 {
+
+    private $allCustomers;
+
+    public function __construct($id, Module $module, array $config = [])
+    {
+        parent::__construct($id, $module, $config);
+        $this->allCustomers = Customer::getAllCustomers();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -84,7 +95,8 @@ class BookingController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'roomId' => Yii::$app->request->get('room_id')
+            'roomId' => Yii::$app->request->get('room_id'),
+            'customers' => $this->allCustomers
         ]);
     }
 
@@ -99,13 +111,17 @@ class BookingController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $date = strtotime(Yii::$app->request->post('Booking')['date']);
+            $model->date = date('Y-m-d H:i:s', $date);
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
-            'rooms' => \app\models\Room::find()->all(),
+            'customers' => $this->allCustomers
         ]);
     }
 
@@ -122,6 +138,17 @@ class BookingController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionBookingReady()
+    {
+
+        $raw = $this->renderPartial('booking_form');
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => 'images/temp']);
+        $mpdf->WriteHTML($raw);
+        $mpdf->Output('images/pdf/'.time().'.pdf');
+
+        return $raw;
     }
 
     /**

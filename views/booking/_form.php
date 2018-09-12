@@ -7,6 +7,8 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Booking */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $roomId integer */
+/* @var $customers \app\models\Customer[] */
+
 ?>
 
 <div class="booking-form">
@@ -17,11 +19,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'customer_id')->textInput() ?>
 
+    <?= !empty($customers) ? $form->field($model, 'customer_id')->dropDownList($customers) : '<button class="btn-success new_customer">New Customer</button>' ?>
+
     <?= $form->field($model, 'date', [
-        'class' => 'app\components\ActiveField'
+        'class' => 'app\components\ActiveField',
+        'errorOptions' => ['encode' => false]
     ])->calendarInput() ?>
 
-    <?= $form->field($model, 'room_id')->textInput(['value' => $roomId, 'disabled' => isset($roomId)]) ?>
+    <?= $form->field($model, 'room_id')->label(Yii::t('app','Room number'))->dropDownList(\app\models\Room::getAllNumbers(), ['value' => $roomId, 'disabled' => isset($roomId)]) ?>
 
     <?= $form->field($model, 'meal_plan')->textInput(['maxlength' => true]) ?>
 

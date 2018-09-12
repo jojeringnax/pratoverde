@@ -20,9 +20,10 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        '/vendor/bower-asset/bootstrap/dist/css/bootstrap.css',
     ];
     public $js = [
+        '/vendor/bower-asset/jquery/dist/jquery.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

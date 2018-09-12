@@ -7,6 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Booking */
 /* @var $roomId integer */
 /* @var $rooms app\models\Room[] */
+/* @var $customers \app\models\Customer[] */
 
 $this->title = Yii::t('app', 'Create Booking');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Bookings'), 'url' => ['index']];
@@ -19,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'model' => $model,
         'roomId' => $roomId,
-        'rooms' => $rooms,
+        'customers' => $customers
     ]) ?>
 
 </div>

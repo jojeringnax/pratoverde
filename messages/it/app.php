@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Approximately' => 'Circa',
     'Comment' => '',
     'ID' => '',
     'Link To Photo' => '',
@@ -47,9 +48,13 @@ return [
     'Problems' => 'Problemi',
     'Room' => 'Camera',
     'Room number' => 'Numero di camera',
-    'Rooms' => 'Cameri',
+    'Rooms' => 'Camere',
     'Status' => 'Stato',
     'Type' => 'Tipo',
     'Update' => 'Aggiorna',
     'Update Problem: ' => 'Aggiorna il problema: ',
+    'For pay' => 'Pagherai',
+    'Price' => 'Prezzo',
+    'The company that issued your card may charge you a fee on transactions abroad.' => 'La società che ha emesso la tua carta potrebbe addebitarti una tassa sulle transazioni estere.',
+    'The total price shown is the amount that you pay at the structure' => 'Il prezzo totale indicato è l\'importo che pagherai',
 ];

@@ -5,6 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Booking */
 /* @var $rooms app\models\Room[] */
+/* @var $customers \app\models\Customer[] */
 
 $this->title = Yii::t('app', 'Update Booking: ' . $model->id, [
     'nameAttribute' => '' . $model->id,
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
     <?= $this->render('_form', [
         'model' => $model,
         'roomId' => $model->room_id,
-        'rooms' => $rooms
+        'customers' => $customers
     ]) ?>
 
 </div>

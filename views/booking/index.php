@@ -26,14 +26,24 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'value' => 'modified_at',
             'total_price',
-            'customer_id',
             'date:date',
-            'room_id',
-            //'meal_plan',
-            //'number_of_guests',
+            [
+                'label' => 'Date Outgoing',
+                'value' => 'EndDateFormat'
+            ],
+            [
+                'label' => 'Room Number',
+                'value' => 'RoomNumber',
+                'content' => function($model) {
+                    return $model->room === null ? Yii::t('yii', '(not set)') : Html::a($model->getRoomNumber(), \yii\helpers\Url::to(['room/view', 'id' => $model->room_id]));
+                },
+                'format' => 'raw'
+            ],
+            'meal_plan',
+            'number_of_guests',
             //'status',
             //'number_of_children',
-            //'number_of_nights',
+            'number_of_nights',
             //'addons',
 
             ['class' => 'yii\grid\ActionColumn'],

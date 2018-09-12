@@ -6,7 +6,10 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Booking */
 
-$this->title = $model->id;
+$this->title = Yii::t('app', 'Booking on dates from ').
+    date('d-m-Y',strtotime($model->date)).' '.
+    Yii::t('app', 'to').' '.
+    date('d-m-Y', strtotime($model->date) + $model->number_of_nights*24*3600);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Bookings'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,16 +31,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'booked_at',
             'modified_at',
             'total_price',
             'customer_id',
             [
-                    'label' => Yii::t('app', 'Coming date'),
-                'value' => mb_strcut($model->date, 0, 10)
+                'label' => Yii::t('app', 'Coming date'),
+                'value' => date('d-m-Y', strtotime($model->date))
             ],
-            'room_id',
+            [
+                'label' => $model->attributeLabels()['room_id'],
+                'value' => Html::a(
+                            $model->room->number,
+                            \yii\helpers\Url::to([
+                                'room/view',
+                                'id' => $model->room_id
+                            ])
+                    ),
+                'format' => 'raw'
+            ],
             'meal_plan',
             'number_of_guests',
             'status',

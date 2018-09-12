@@ -2,25 +2,145 @@
 
 /* @var $this yii\web\View */
 
-use yii\helpers\Html;
-
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 
+\app\assets\AppAsset::register($this);
 $this->registerCss('
-.col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9,
-col-lg-10, .col-lg-11, .col-lg-12 {
-    padding-left: 0;
-    padding-right: 0
-}
-');
-?>
-< D
-    <html>
 
-    </html>
-    <div class="wrapper" style="width: 900px; border: solid black 2px; background-color: #eeeeee; ">
-        <div class="container" style="width: 850px; padding-top: 12px; margin: 0 auto;">
+');
+
+
+?>
+<head>
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/397f102c/css/bootstrap.min.css?v=1531912488" /> -->
+    <style>
+
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        div {
+            display: block;
+        }
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+        }
+        html {
+            font-family: sans-serif;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        html {
+            font-size: 10px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        html {
+            font-size: 10px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        html {
+            font-family: sans-serif;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        .btn-group-vertical>.btn-group:after, .btn-group-vertical>.btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+            display: table;
+            content: " ";
+        }
+        :after, :before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .btn-group-vertical>.btn-group:after, .btn-toolbar:after, .clearfix:after, .container-fluid:after, .container:after, .dl-horizontal dd:after, .form-horizontal .form-group:after, .modal-footer:after, .modal-header:after, .nav:after, .navbar-collapse:after, .navbar-header:after, .navbar:after, .pager:after, .panel-body:after, .row:after {
+            clear: both;
+        }
+        .btn-group-vertical>.btn-group:after, .btn-group-vertical>.btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .modal-header:after, .modal-header:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+            display: table;
+            content: " ";
+        }
+        :after, :before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff;
+            width
+        }
+
+        html {
+            font-size: 10px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        html {
+            font-family: sans-serif;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        .col-lg-2, .col-lg-4, .col-lg-6, .col-lg-12 {
+            box-sizing: border-box;
+            padding-left: 0;
+            padding-right: 0;
+            float: left;
+            position: relative;
+            min-height: 1px;
+        }
+
+        .col-lg-2 {
+            width: 16.6666667%;
+        }
+
+        .col-lg-4 {
+            width: 33.3333333%;
+        }
+
+        .col-lg-6 {
+            width: 50%;
+        }
+
+        .col-lg-12 {
+            width: 100%;
+        }
+
+    </style>
+</head>
+<div class="wrapper" style="width: 850px; border: solid black 2px; background-color: #eeeeee; ">
+        <div class="container" style="width: 800px; padding-top: 12px; margin: 0 auto;">
             <div class="row" style="border-bottom: solid #aaa 2px; padding-bottom: 15px">
                 <div class="card-img col-lg-2">
                    <img src="/images/room_photos/Room_1_1.jpg" width="100%"/>
@@ -36,7 +156,7 @@ col-lg-10, .col-lg-11, .col-lg-12 {
                        <b><?= Yii::t('app', 'Phone') ?>: </b>+39 320 830 80 63
                    </div>
                    <div class="coordinates">
-                       <b><?= Yii::t('app', 'GPS coordinates') ?>: </b>N 44&deg 20'36.906'', E 0.11&deg 43'28.916''
+                       <b><?= Yii::t('app', 'GPS coordinates') ?>: </b>N 44° 20'36.906'', E 0.11° 43'28.916''
                    </div>
                 </div>
                 <div class="col-lg-2" style="border-left: solid #aaa 2px;">
@@ -76,7 +196,7 @@ col-lg-10, .col-lg-11, .col-lg-12 {
                    </div>
                 </div>
                 <div class="col-lg-2">
-                   <div class="room_nights" style="text-align: center;"><?= strtoupper(Yii::t('app', 'Room').'//'.Yii::t('app','Nights')) ?></div>
+                   <div class="room_nights" style="text-align: center;"><?= strtoupper(Yii::t('app', 'Room').'/'.Yii::t('app','Nights')) ?></div>
                    <div class="number" style="text-align: center; font-weight: bold; font-size: 32px;">
                        1/20
                    </div>
@@ -184,4 +304,6 @@ col-lg-10, .col-lg-11, .col-lg-12 {
         </div>
     </div>
 
+<?php
 
+?>

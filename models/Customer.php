@@ -28,7 +28,7 @@ use Yii;
  * @property string $created_at
  * @property string $update_at
  *
- * @property Bookings[] $bookings
+ * @property Booking[] $bookings
  */
 class Customer extends \yii\db\ActiveRecord
 {
@@ -88,11 +88,24 @@ class Customer extends \yii\db\ActiveRecord
         ];
     }
 
+
+    /**
+     * @return array|Customer[]
+     */
+    public static function getAllCustomers()
+    {
+        foreach (Customer::find()->all() as $customer)
+        {
+            $result[$customer->id] = $customer;
+        }
+        return isset($result) ? $result : [];
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getBookings()
     {
-        return $this->hasMany(Bookings::className(), ['customer_id' => 'id']);
+        return $this->hasMany(Booking::className(), ['customer_id' => 'id']);
     }
 }

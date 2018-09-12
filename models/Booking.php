@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\DateValidatorForBooking;
 use Yii;
 
 /**
@@ -47,6 +48,7 @@ class Booking extends \yii\db\ActiveRecord
             [['status'], 'string', 'max' => 16],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['customer_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
+            [['date'], DateValidatorForBooking::className()]
         ];
     }
 
@@ -58,11 +60,11 @@ class Booking extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'booked_at' => Yii::t('app', 'Booked At'),
-            'modified_at' => Yii::t('app', 'Modified At'),
+            'modified_at' => Yii::t('app', 'Created or last modified at'),
             'total_price' => Yii::t('app', 'Total Price'),
             'customer_id' => Yii::t('app', 'Customer ID'),
-            'date' => Yii::t('app', 'Date'),
-            'room_id' => Yii::t('app', 'Room ID'),
+            'date' => Yii::t('app', 'Coming date'),
+            'room_id' => Yii::t('app', 'Room number'),
             'meal_plan' => Yii::t('app', 'Meal Plan'),
             'number_of_guests' => Yii::t('app', 'Number Of Guests'),
             'status' => Yii::t('app', 'Status'),
@@ -86,5 +88,29 @@ class Booking extends \yii\db\ActiveRecord
     public function getRoom()
     {
         return $this->hasOne(Room::className(), ['id' => 'room_id']);
+    }
+
+    /**
+     * @return int
+     */
+    public function getRoomNumber()
+    {
+        return $this->room !== null ? $this->room->number : $this->room_id;
+    }
+
+    /**
+     * @return false|float|int
+     */
+    public function getEndDate()
+    {
+        if ($this->date && is_integer($this->number_of_nights)) {
+            return strtotime($this->date) + $this->number_of_nights * 24 * 3600;
+        }
+        return 0;
+    }
+
+    public function getEndDateFormat()
+    {
+        return date('M d, Y', $this->getEndDate());
     }
 }

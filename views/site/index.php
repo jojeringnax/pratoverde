@@ -2,8 +2,51 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Hotel&Ristorante Prato Verde in Polinago';
 ?>
+
+<section id="navigation" class="flex">
+    <div class="button buttons flex" id="numbers">
+        <div><?= Yii::t('app', 'Numbers') ?></div>
+    </div>
+    <div class="button buttons flex" id="restaurant">
+        <a style="color: black;" href="#restaurant"><div><?= Yii::t('app', 'Restaurant') ?></div></a>
+    </div>
+    <div class="button buttons flex" id="blog">
+        <div><?= Yii::t('app', 'Blog') ?></div>
+    </div>
+    <div class="button buttons flex" id="contacts">
+        <div><?= Yii::t('app', 'Contacts') ?></div>
+    </div>
+</section>
+<section id="booking_now" class="flex">
+    <div class="h1 button"><?= Yii::t('app', 'BOOK NOW') ?></div>
+</section>
+<section id="restaurant">
+    <div class="h1 text-center"><?= Yii::t('app', 'Restaurant') ?></div>
+    <div class="flex photos" id="restaurant">
+        <!-- TODO: Add Photos -->
+    </div>
+    <div class="h2 text-center button">MENU</div>
+</section>
+<section id="blog">
+    <div class="h1 text-center">BLOG</div>
+    <!-- TODO: Add Blog -->
+</section>
+<section id="map" class="flex" style="justify-content: space-between">
+    <div class="google_map" style="width: 50%;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11414.780393176052!2d10.721059949999999!3d44.3367701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x59133e826aa7a38a!2sHotel+Prato+Verde!5e0!3m2!1sen!2sit!4v1536774624223" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="text_map" style="width: 45%;">
+        <ul class="contacts">
+            <li><div class="h3">Hotel Prato Verde</div>
+            <li><div class="h4"><?= Yii::t('app', 'Address') ?>: Via Dei Friniati 11</div>
+            <li><div class="h4"><?= Yii::t('app', 'Mobile') ?>: <a href="tel:+393500492534">+393500492534</a></div>
+            <li><div class="h4">Email: hollow718@gmail.com</div>
+        </ul>
+    </div>
+</section>
+<!--
 <div class="site-index">
 
     <div class="jumbotron">
@@ -51,3 +94,4 @@ $this->title = 'My Yii Application';
 
     </div>
 </div>
+-->

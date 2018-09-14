@@ -15,10 +15,11 @@ class m180913_104118_create_table_dishes extends Migration
     public function safeUp()
     {
         $this->createTable($this->tableName, [
-           'id' => $this->primaryKey(),
-           'name' => $this->string(32),
-           'created_at' => $this->dateTime()->defaultExpression('current_timestamp'),
-           'updated_at' => $this->timestamp(),
+            'id' => $this->primaryKey(),
+            'name' => $this->string(32),
+            'created_at' => $this->dateTime()->defaultExpression('current_timestamp'),
+            'updated_at' => $this->timestamp(),
+            'cooking_time' => $this->integer(3),
             'description' => $this->text(),
             'special_types' => $this->string(32),
             'type_id' => $this->integer(11)

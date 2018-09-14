@@ -9,6 +9,7 @@ class m180913_103540_create_table_dishes_types extends Migration
 {
 
     private $tableName = 'dishes_types';
+
     /**
      * {@inheritdoc}
      */

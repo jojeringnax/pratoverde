@@ -68,4 +68,23 @@ class QuantityOfIngridientsInDishes extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Ingredient::className(), ['id' => 'ingridient_id']);
     }
+
+    /**
+     * @param $dish_id
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getAllForADish($dish_id)
+    {
+        $quantities = self::find()->where(['dish_id' => $dish_id])->all();
+        if($quantities !== null) {
+            foreach($quantities as $quantity) {
+                $result[] = array(
+                    'ingridient' => $quantity->ingridient->name,
+                    'quantity' => $quantity->quantity
+                );
+            }
+            return $result;
+        };
+        return null;
+    }
 }

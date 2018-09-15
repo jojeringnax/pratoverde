@@ -33,6 +33,17 @@ class m180913_104118_create_table_dishes extends Migration
             'id',
             'RESTRICT'
             );
+
+        $this->addColumn('photos', 'dish_id', 'integer(11)');
+
+        $this->addForeignKey(
+            'fk-photos-dish_id',
+            'photos',
+            'dish_id',
+            'dishes',
+            'id',
+            'CASCADE'
+        );
     }
 
     /**

@@ -33,6 +33,7 @@ class m180628_151734_create_tables_photos_rooms_problems extends Migration
             'toilet_view_photo_id' => $this->integer()
         ]);
 
+
         $this->createTable('problems',[
             'id'         => $this->primaryKey(),
             'category'   => $this->tinyInteger()->notNull(),
@@ -41,7 +42,7 @@ class m180628_151734_create_tables_photos_rooms_problems extends Migration
             'room_id'    => $this->integer(),
             'status'     => $this->tinyInteger(),
             'created_at' => $this->dateTime()->defaultExpression('current_timestamp'),
-            'updated_at' => 'timestamp on update current_timestamp'
+            'updated_at' => $this->timestamp()
         ]);
 
         $this->addForeignKey(
@@ -96,9 +97,14 @@ class m180628_151734_create_tables_photos_rooms_problems extends Migration
     public function safeDown()
     {
         try {
-            $this->dropTable('photos');
-            $this->dropTable('rooms');
+            $this->dropForeignKey('fk-photos-problem_id', 'photos');
+            $this->dropForeignKey('fk-photos-room_id', 'photos');
+            $this->dropForeignKey('fk-rooms-toilet_view_photo_id', 'rooms');
+            $this->dropForeignKey('fk-rooms-room_view_photo_id', 'rooms');
+            $this->dropForeignKey('fk-problems-room_id', 'problems');
             $this->dropTable('problems');
+            $this->dropTable('rooms');
+            $this->dropTable('photos');
             return true;
         } catch (Exception $e) {
             echo "m180703_085233_create_table_photos cannot be reverted.\n";

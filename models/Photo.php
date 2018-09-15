@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\models\menu\Dish;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
@@ -80,6 +81,14 @@ class Photo extends ActiveRecord
     public function getRoom()
     {
         return $this->hasOne(Room::className(), ['id' => 'room_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDish()
+    {
+        return $this->hasOne(Dish::className(), ['id' => 'dish_id']);
     }
 
     /**

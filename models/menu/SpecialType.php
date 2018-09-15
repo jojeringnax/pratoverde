@@ -1,25 +1,25 @@
 <?php
 
-namespace app\models;
+namespace app\models\menu;
 
 use Yii;
 
 /**
- * This is the model class for table "ingridients_types".
+ * This is the model class for table "special_types".
  *
  * @property int $id
  * @property string $name
- *
- * @property Ingredient[] $ingridients
+ * @property string $description
+ * @property string $created_at
  */
-class IngredientsType extends \yii\db\ActiveRecord
+class SpecialType extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'ingridients_types';
+        return 'special_types';
     }
 
     /**
@@ -28,6 +28,8 @@ class IngredientsType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['description'], 'string'],
+            [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 32],
         ];
     }
@@ -40,14 +42,8 @@ class IngredientsType extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => Yii::t('app', 'Name'),
+            'description' => Yii::t('app', 'Description'),
+            'created_at' => Yii::t('app', 'Created At'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIngridients()
-    {
-        return $this->hasMany(Ingredient::className(), ['type_id' => 'id']);
     }
 }

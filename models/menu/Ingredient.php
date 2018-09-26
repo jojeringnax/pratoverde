@@ -9,7 +9,6 @@ use Yii;
  *
  * @property int $id
  * @property string $name
- * @property string $description
  * @property int $type_id
  *
  * @property IngredientsType $type
@@ -31,9 +30,9 @@ class Ingredient extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description'], 'string'],
             [['type_id'], 'integer'],
             [['name'], 'string', 'max' => 32],
+            [['name'], 'unique'],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => IngredientsType::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
@@ -46,7 +45,6 @@ class Ingredient extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => Yii::t('app', 'Name'),
-            'description' => Yii::t('app', 'Description'),
             'type_id' => Yii::t('app', 'Type ID'),
         ];
     }

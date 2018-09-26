@@ -31,6 +31,7 @@ class SpecialType extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 32],
+            [['name'], 'unique']
         ];
     }
 

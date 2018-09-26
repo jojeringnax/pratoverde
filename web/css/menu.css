@@ -1,0 +1,38 @@
+div.ingredients_wrapper {
+    width: 300px;
+}
+
+div.ingredient {
+    width: 120px;
+    border: 1px solid black;
+    -webkit-border-radius: 10%;
+    -moz-border-radius: 10%;
+    border-radius: 10%;
+    text-align: center;
+}
+
+div.head_ingridient {
+    width: 60px;
+}
+
+div.head_ingridient#name {
+    width: 120px;
+}
+
+div.head_of_ingridients {
+    text-align: center;
+}
+
+div.body_of_ingridients, div.head_of_ingridients {
+    justify-content: space-between;
+}
+
+div.ingredient.active {
+    background-color: limegreen;
+    color: white;
+    border: 1px solid white;
+}
+
+div.ingredient:hover {
+    cursor: pointer;
+}

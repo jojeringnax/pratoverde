@@ -29,6 +29,7 @@ class IngredientsType extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'string', 'max' => 32],
+            [['name'], 'unique']
         ];
     }
 

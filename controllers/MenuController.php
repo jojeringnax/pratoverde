@@ -10,7 +10,9 @@ namespace app\controllers;
 
 
 use app\models\menu\Dish;
+use app\models\menu\DishesType;
 use app\models\menu\Ingredient;
+use app\models\menu\IngredientsType;
 use app\models\menu\QuantityOfIngridientsInDishes;
 use app\models\Photo;
 use yii\web\Controller;
@@ -61,8 +63,11 @@ class MenuController extends Controller
     public function actionCreate()
     {
         $dish = new Dish();
+        $dishType = new DishesType();
         $ingredient = new Ingredient();
+        $ingredientsType = new IngredientsType();
         $quantity = new QuantityOfIngridientsInDishes();
+        $allIngredients = Ingredient::findAll(1);
         if (\Yii::$app->request->isPost) {
 
 
@@ -76,7 +81,10 @@ class MenuController extends Controller
         return $this->render('create', [
             'dish' => $dish,
             'ingredient' => $ingredient,
-            'quantity' => $quantity
+            'quantity' => $quantity,
+            'dishType' => $dishType,
+            'ingredientType' => $ingredientsType,
+            'allIngredients' => $allIngredients
         ]);
     }
 

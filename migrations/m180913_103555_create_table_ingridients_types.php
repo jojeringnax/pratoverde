@@ -15,7 +15,7 @@ class m180913_103555_create_table_ingridients_types extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'name' => $this->string(32)
+            'name' => $this->string(32)->unique()
         ]);
 
     }

@@ -40,6 +40,7 @@ class Dish extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['type_id'], 'integer'],
             [['name', 'special_types'], 'string', 'max' => 32],
+            [['name'], 'unique'],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => DishesType::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }

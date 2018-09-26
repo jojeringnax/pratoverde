@@ -16,7 +16,7 @@ class m180913_095028_create_table_special_types extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'name' => $this->string(32),
+            'name' => $this->string(32)->unique(),
             'description' => $this->text(),
             'created_at' => $this->timestamp()
         ]);

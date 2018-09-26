@@ -16,7 +16,7 @@ class m180913_104118_create_table_dishes extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'name' => $this->string(32),
+            'name' => $this->string(32)->unique(),
             'created_at' => $this->dateTime()->defaultExpression('current_timestamp'),
             'updated_at' => $this->timestamp(),
             'cooking_time' => $this->integer(3),

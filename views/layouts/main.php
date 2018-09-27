@@ -32,40 +32,29 @@ $this->registerCssFile('css/site.css');
 </head>
 <body>
 <?php $this->beginBody() ?>
-
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-left'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            /*['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],*/
-            ['label' => Yii::t('app', 'Language'), 'url' => ['site/language']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
 
+    <header>
+        <div class="flex header_wrapper">
+            <div class="header_left_wrapper">
+                <div class="book_room_button"></div>
+                <div class="header_pic"><img src="img/header_pic.png" height="500px" /></div>
+            </div>
+            <div class="header_right" id="logo">
+                <img src="img/logo.png" height="160px"/>
+            </div>
+        </div>
+        <div class="flex fixed wrapper_nav">
+            <div class="nav" id="empty"></div>
+            <div class="nav flex" id="navigation">
+                <a class="navigation" id="rooms" href="#booking_now"><?= Yii::t('app', 'rooms') ?></a>
+                <a class="navigation" id="ristorante" href="#restaurant"><?= Yii::t('app', 'restaurant') ?></a>
+                <a class="navigation" id="blog" href="#blog"><?= Yii::t('app', 'blog') ?></a>
+                <a class="navigation" id="location" href="#map"><?= Yii::t('app', 'location') ?></a>
+            </div>
+            <div class="nav" id="arrow"><a href="#"><span class="glyphicon">&#xe093;</a></span></div>
+        </div>
+    </header>
     <div class="container" width="100%">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

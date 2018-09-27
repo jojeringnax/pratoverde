@@ -5,20 +5,6 @@
 $this->title = 'Hotel&Ristorante Prato Verde in Polinago';
 ?>
 
-<section id="navigation" class="flex">
-    <div class="button buttons flex" id="numbers">
-        <div><?= Yii::t('app', 'Numbers') ?></div>
-    </div>
-    <div class="button buttons flex" id="restaurant">
-        <a style="color: black;" href="#restaurant"><div><?= Yii::t('app', 'Restaurant') ?></div></a>
-    </div>
-    <div class="button buttons flex" id="blog">
-        <div><?= Yii::t('app', 'Blog') ?></div>
-    </div>
-    <div class="button buttons flex" id="contacts">
-        <div><?= Yii::t('app', 'Contacts') ?></div>
-    </div>
-</section>
 <section id="booking_now" class="flex">
     <div class="h1 button"><?= Yii::t('app', 'BOOK NOW') ?></div>
 </section>

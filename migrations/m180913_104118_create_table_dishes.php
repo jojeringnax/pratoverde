@@ -53,6 +53,7 @@ class m180913_104118_create_table_dishes extends Migration
     {
 
         try {
+            $this->dropForeignKey('fk-photos-dish_id', 'photos');
             $this->dropTable($this->tableName);
             return true;
         } catch (Exception $e) {

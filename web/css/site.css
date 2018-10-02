@@ -3,26 +3,86 @@ body {
     height: 100%;
 }
 
+a {
+    color: black;
+}
+
+a:hover {
+    text-decoration: none!important;
+}
+
+section {
+    width: 100%;
+}
+
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.flex.column {
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
 .fixed {
     position: fixed;
+    margin: 0;
+    top: 0;
+}
+
+img#header_pic {
+    height: 600px;
 }
 
 .wrapper_nav {
-    width: 80%;
-    margin-left: 10%;
-    padding:10px 0;
+    width: 100%;
     border: 1px solid black;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    z-index: 99;
+}
+
+.wrapper_nav * {
+    color: black
+}
+
+.nav#arrow {
+    padding-right: 15px;
+    text-align: right;
+    font-size: 28px;
 }
 
 .flex.header_wrapper {
-    align-items: flex-start;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+    flex-wrap: wrap-reverse;
 }
 
 .book_room_button {
     height: 53px;
+    line-height: 53px;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 0 20px 10px;
     background-color: black;
+    color: white;
     font-size: 24px;
-    padding:
+    padding: 0 5px;
+}
+
+.book_room_button:hover {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
 }
 
 .wrap {
@@ -30,6 +90,11 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
+}
+
+.inverse {
+    background-color: black;
+    color: white!important;
 }
 
 div.nav#empty {
@@ -44,124 +109,335 @@ div.nav#arrow {
     width: 20%;
 }
 
+.text_greetings {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.image_greetings {
+    width: 20%;
+    margin: 0 auto;
+}
+
+.image_greetings img {
+    width: 100%;
+}
+
+
+
+section#booking {
+    height: 600px;
+}
+
+.flex.booking {
+    width: 100%;
+    height: 100%;
+    background-color: black; /* TODO: Change background Image */
+}
+
+.wrapper_booking {
+    width: 275px;
+    height: 275px;
+    background-color: white;
+    z-index: 3;
+}
+
+.wrapper_booking > .flex.column {
+    font-size: 28px;
+    height: 175px;
+    margin-top: 50px;
+}
+
+a#booking {
+    border: 2px solid black;
+    padding: 4px 20px;
+    color: black;
+}
+
+.flex.restaurant#second_row {
+    flex-wrap: wrap-reverse;
+}
+
+div.restaurant {
+    width: 100%;
+}
+
+div.restaurant > div {
+    width: 50%;
+    height: 300px;
+}
+
+.pizzeria.flex {
+    background: url('../img/pizza.jpg') no-repeat fixed left;
+    background-size: cover;
+}
+
+.text-center#pizzeria {
+    border: 1px solid black;
+    font-size: 28px;
+    padding: 2px 4px;
+    font-weight: bold;
+    color: black;
+}
+
+.text-center#chief > div {
+    margin: 0 auto;
+}
+
+.describe_chief#label {
+    background-color: black;
+    color: white;
+    font-style: italic;
+    font-size: 28px;
+    padding: 2px 4px;
+    width: 165px;
+}
+
+.describe_chief#text {
+    width: 70%;
+}
+
+.menu_working-hours.flex.column div {
+    width: 100%;
+}
+
+.working_hours {
+    text-align: center;
+    font-size: 18px;
+}
+
+.menu_working-hours.flex.column > .working_hours > div.flex {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.text-center#menu {
+    background-color: black;
+    color: white;
+    font-size: 28px;
+    padding: 4px 14px;
+    font-weight: bold;
+}
+
+.restaurant_cell.flex {
+    background: url('../img/carne.jpg') no-repeat fixed right;
+    background-size: cover;
+}
+
+.text-center#restaurant {
+    border: 1px solid white;
+    font-size: 28px;
+    padding: 2px 4px;
+    color: white;
+}
+
+section#blog {
+    padding: 20px 0;
+}
+
+.flex#blog {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.blog_cell_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 270px;
+    border: 1px solid #aaaaaa;
+    text-align: center;
+    padding: 27px 0;
+}
+
+.blog_image {
+    width: 190px;
+    height: 190px;
+    margin-top: 20px;
+    background-color: #1c7430; /* TODO: Add photos */
+}
+
+.blog_label {
+    margin: 10px 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.flex#look_more {
+    padding: 10px 0;
+}
+
+.text-center#look_more {
+    font-size: 28px;
+    color: white;
+    background-color: black;
+    font-style: italic;
+    padding: 0 20px;
+}
+
+.text-center#we_are_here {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.text-center#map_text {
+    margin-bottom: 20px;
+}
+
+.text_map {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.show_me_the_way {
+    font-size: 28px;
+    padding: 4px 8px;
+    width: max-content;
+    width: -moz-max-content;
+    border: 2px solid black;
+    margin: 0 auto;
+}
+
+.google_map > iframe {
+    height: 500px;
+    width: 500px;
+}
+
 .footer {
-    background-color: #f5f5f5;
+    background-color: #333333;
     border-top: 1px solid #ddd;
     padding-top: 20px;
 }
 
-.jumbotron {
-    text-align: center;
-    background-color: transparent;
+div.socials {
+    padding: 80px 0;
 }
 
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+a.social {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
 }
 
-.not-set {
-    color: #c55;
-    font-style: italic;
+a.social#google {
+    background-image: url('../img/social/google.jpg');
 }
 
-/* add sorting icons to gridview sort links */
-a.asc:after, a.desc:after {
-    position: relative;
-    top: 1px;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    padding-left: 5px;
+a.social#facebook {
+    background-image: url('../img/social/fb.jpg');
 }
 
-a.asc:after {
-    content: /*"\e113"*/ "\e151";
+a.social#twitter {
+    background-image: url('../img/social/twitter.jpg');
 }
 
-a.desc:after {
-    content: /*"\e114"*/ "\e152";
+a.social#vk {
+    background-image: url('../img/social/vk.jpg');
 }
 
-.sort-numerical a.asc:after {
-    content: "\e153";
-}
-
-.sort-numerical a.desc:after {
-    content: "\e154";
-}
-
-.sort-ordinal a.asc:after {
-    content: "\e155";
-}
-
-.sort-ordinal a.desc:after {
-    content: "\e156";
-}
-
-.grid-view th {
-    white-space: nowrap;
-}
-
-.hint-block {
-    display: block;
-    margin-top: 5px;
-    color: #999;
-}
-
-.error-summary {
-    color: #a94442;
-    background: #fdf7f7;
-    border-left: 3px solid #eed3d7;
-    padding: 10px 20px;
-    margin: 0 0 15px 0;
-}
-
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding: 15px;
-    border: none;
-}
-
-@media(max-width:767px) {
-    .nav li > form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 15px;
-    }
-}
-
-.nav > li > form > button.logout:focus,
-.nav > li > form > button.logout:hover {
-    text-decoration: none;
-}
-
-.nav > li > form > button.logout:focus {
-    outline: none;
-}
-
-.flex {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.button:hover {
-    cursor: pointer;
-}
-
-.buttons {
-    width: 15%;
-}
-
-section#booking_now {
+.wrapper_contacts.flex.column, .wrapper_signup.flex.column {
+    align-items: flex-start;
+    justify-content: space-between;
+    color: white;
     height: 300px;
 }
 
-ul.contacts li {
-    list-style-type: none;
+.wrapper_signup.flex.column {
+    align-items: center;
 }
+
+.wrapper_contacts.flex.column a {
+    color: white;
+}
+
+.contacts {
+    justify-content: flex-start;
+    min-width: 400px;
+}
+
+.contacts#label, .signup#label {
+    font-weight: bold;
+    font-size: 32px;
+    text-align: center;
+}
+
+.contacts > span {
+    font-size: 28px;
+    margin-right: 20px;
+}
+
+.wrapper_signup > img {
+    width: 220px;
+}
+
+.signup#submit {
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    background: white;
+    margin-bottom: -124px;
+}
+
+
+
+
+
+@media (max-width: 1024px) {
+
+    img#header_pic {
+        width: 100%;
+        height: auto;
+    }
+
+    div.restaurant > div {
+        width: 100%;
+    }
+
+    .header_right#logo {
+        width: 100%;
+        background-color: black;
+        text-align: center;
+    }
+
+    .book_room_button {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+
+    .flex#blog {
+        width: 100%;
+    }
+
+    .blog_cell_wrapper {
+        width: 50%;
+    }
+
+    .google_map {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .google_map > iframe {
+        width: 100%;
+    }
+
+    @media (max-width: 700px) {
+        .blog_cell_wrapper {
+            width: 100%;
+        }
+    }
+}
+
+
+@media (min-width: 1024px) and (max-width: 1766px) {
+    img#header_pic {
+        height: 400px;
+    }
+}
+

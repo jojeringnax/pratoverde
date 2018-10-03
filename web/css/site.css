@@ -68,6 +68,10 @@ img#header_pic {
 }
 
 .book_room_button {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
     height: 53px;
     line-height: 53px;
     vertical-align: middle;
@@ -107,6 +111,35 @@ div.nav#navigation {
 
 div.nav#arrow {
     width: 20%;
+}
+
+.menu-small {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background: white;
+    z-index: 9999;
+}
+
+.menu-small {
+    display: none;
+}
+
+.menu-small:hover {
+    cursor: pointer;
+}
+
+.line {
+    height: 10px;
+    width: 40px;
+    box-sizing: border-box;
+}
+
+.line#last {
+    margin: 9px 0;
 }
 
 .text_greetings {
@@ -428,9 +461,47 @@ a.social#vk {
     }
 
     @media (max-width: 700px) {
+
+        .menu-small {
+            display: flex;
+        }
+
         .blog_cell_wrapper {
             width: 100%;
         }
+
+        .nav#navigation {
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .wrapper_nav {
+            display: none;
+             height: 0;
+        }
+
+        a.navigation {
+            display: inline-flex;
+            align-items: center;
+            height: 25%;
+            width: 100%;
+            text-align: center;
+        }
+
+        .nav#arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        
+        .nav#arrow > a{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
     }
 }
 

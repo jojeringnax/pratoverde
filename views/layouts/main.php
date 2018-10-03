@@ -53,6 +53,10 @@ $this->registerJsFile('js/main.js');
             </div>
             <div class="nav" id="arrow"><a href="#head" class="navigation"><span class="glyphicon">&#xe093;</span></a></div>
         </div>
+        <div class="menu-small">
+            <div class="line" style="border-bottom: 1px solid black;"></div>
+            <div class="line" id="last" style="border-bottom: 1px solid black; border-top: 1px solid black;"></div>
+        </div>
     </header>
     <div class="wrapper">
         <?= Breadcrumbs::widget([

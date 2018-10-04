@@ -3,9 +3,8 @@ $(document).ready( function() {
         navPoint = $('a.navigation'),
         heightHeader = $('.header_wrapper').height(),
         navigation = $('.flex.wrapper_nav'),
-        menuOpener = $('.menu-small'),
+        menuOpener = $('div.menu-small'),
         bookButton = $('.book_room_button');
-
 
     window.isOpenedMenu = false;
 
@@ -31,6 +30,7 @@ $(document).ready( function() {
             bookButton.css('margin-left', 10);
         }
     });
+
     $(window).resize( function() {
         heightHeader = $('.header_wrapper').height();
     });
@@ -42,21 +42,21 @@ $(document).ready( function() {
             if(window.isOpenedMenu) {
                 navigation.animate({'height': 0}, 500);
                 setTimeout(function() {navigation.css('display', 'none');}, 500);
-                menuOpener.animate({'top': 0}, 500);
+                menuOpener.animate({'top': 53}, 500);
                 window.isOpenedMenu = !window.isOpenedMenu;
             }
         }
         return false;
     });
-
     menuOpener.click( function () {
+        var margin = $('.book_room_button').height();
         if (window.isOpenedMenu) {
             navigation.animate({'height': 0}, 500);
+            $(this).animate({'top': margin || 0}, 500);
             setTimeout(function() {navigation.css('display', 'none');}, 500);
-            $(this).animate({'top': 0}, 500);
         } else {
             navigation.css('display', 'flex').animate({'height': '80%'}, 500);
-            $(this).animate({'top': '80%'}, 500);
+            $(this).animate({'top': $(window).height()*0.8 + (margin || 0)}, 500);
         }
         window.isOpenedMenu = !window.isOpenedMenu;
     });

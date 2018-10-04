@@ -1,9 +1,41 @@
 <?php
 
 /* @var $this yii\web\View */
+use yii\widgets\Breadcrumbs;
+use app\widgets\Alert;
 
-$this->title = 'Hotel&Ristorante Prato Verde in Polinago';
+$this->title = Yii::t('app','Hotel&Ristorante Prato Verde in Polinago');
 ?>
+<header id="head">
+    <div class="flex header_wrapper">
+        <div class="header_left_wrapper flex column" style="align-items: flex-start;">
+            <a href="room" class="book_room_button">book room</a>
+            <div class="header_pic"><img id="header_pic" src="/img/header_pic.png" /></div>
+        </div>
+        <div class="header_right" id="logo">
+            <img src="/img/logo.png" height="160px"/>
+        </div>
+    </div>
+    <div class="flex wrapper_nav">
+        <div class="nav" id="empty"></div>
+        <div class="nav flex" id="navigation">
+            <a class="navigation" id="rooms" href="#booking"><?= Yii::t('app', 'rooms') ?></a>
+            <a class="navigation" id="ristorante" href="#restaurant"><?= Yii::t('app', 'restaurant') ?></a>
+            <a class="navigation" href="#blog"><?= Yii::t('app', 'blog') ?></a>
+            <a class="navigation" id="location" href="#map"><?= Yii::t('app', 'location') ?></a>
+        </div>
+        <div class="nav" id="arrow"><a href="#head" class="navigation"><span class="glyphicon">&#xe093;</span></a></div>
+    </div>
+    <div class="menu-small">
+        <div class="line" style="border-bottom: 3px solid black;"></div>
+        <div class="line" id="last" style="border-bottom: 3px solid black; border-top: 3px solid black;"></div>
+    </div>
+</header>
+<div class="wrapper">
+    <?= Breadcrumbs::widget([
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    ]) ?>
+    <?= Alert::widget() ?>
 <section id="greetings">
     <div class="text_greetings">
         Prato Verde <?= Yii::t('app', 'is hotel is for everyone.') ?>

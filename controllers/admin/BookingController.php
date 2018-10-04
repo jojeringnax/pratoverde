@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\admin;
 
 use app\models\Customer;
 use Yii;
@@ -58,7 +58,7 @@ class BookingController extends Controller
                 ]
             ]
         ]);
-        return $this->render('index', [
+        return $this->render('/admin/booking/index', [
             'dataProvider' => $dataProvider,
         ]);
     }

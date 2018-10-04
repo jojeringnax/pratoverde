@@ -6,7 +6,7 @@
  * Time: 09:26
  */
 
-namespace app\controllers;
+namespace app\controllers\admin;
 
 
 use app\models\menu\Dish;

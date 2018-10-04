@@ -1,0 +1,73 @@
+.wrap {
+    min-height: auto;
+}
+
+
+.wrapper_nav {
+    position: fixed;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 55px;
+    top: 0;
+    left: 0;
+}
+
+.nav#label {
+    border: 1px solid black;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.flex.header_right {
+    justify-content: flex-end;
+    margin-right: 20px;
+    margin-top: 75px;
+}
+
+.menu-small {
+    position: fixed;
+}
+
+.room {
+    width: 500px;
+}
+
+.room#photo {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+}
+
+.room#photo > img {
+    posi
+}
+
+.room#label {
+    height: 50px;
+}
+
+.room#facilities {
+    height: 50px;
+}
+
+@media (max-width: 1024px) {
+
+    .menu-small {
+        top: 0;
+    }
+
+    .header_right#logo {
+        width: auto;
+        background: transparent;
+    }
+
+    @media (max-width: 700px) {
+
+        .header_right#logo {
+            margin-top: 50px;
+        }
+
+    }
+}

@@ -139,7 +139,7 @@ div.nav#arrow {
 }
 
 .line#last {
-    margin: 9px 0;
+    margin: 4px 0;
 }
 
 .text_greetings {
@@ -422,6 +422,10 @@ a.social#vk {
 
 @media (max-width: 1024px) {
 
+    .header_right {
+        margin-top: 53px;
+    }
+
     img#header_pic {
         width: 100%;
         height: auto;
@@ -440,7 +444,13 @@ a.social#vk {
     .book_room_button {
         width: 100%;
         text-align: center;
-        margin: 0;
+        margin: 0!important;
+        top: 0;
+        left: 0;
+    }
+
+    .wrapper_nav, .menu-small {
+        top: 53px;
     }
 
     .flex#blog {

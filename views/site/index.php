@@ -71,7 +71,7 @@ $this->title = Yii::t('app','Hotel&Ristorante Prato Verde in Polinago');
                     <?= Yii::t('app','Look and choose') ?>
                 </div>
                 <div class="button booking">
-                    <a href="booking" id="booking"><?= Yii::t('app','there') ?> <span style="font-size: 28px;font-weight: bold;">></span></a>
+                    <a href="room" id="booking"><?= Yii::t('app','there') ?> <span style="font-size: 28px;font-weight: bold;"></span></a>
                 </div>
             </div>
         </div>

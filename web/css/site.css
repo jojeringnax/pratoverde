@@ -168,7 +168,8 @@ section#booking {
 .flex.booking {
     width: 100%;
     height: 100%;
-    background-color: black; /* TODO: Change background Image */
+    background: url('../img/book_section.jpg');
+    background-size: cover;
 }
 
 .wrapper_booking {

@@ -57,7 +57,7 @@ $this->title = Yii::t('app','Hotel&Ristorante Prato Verde in Polinago');
         <?= Yii::t('app','Ristohotel Prato Verde is opened for everyone.') ?>
     </div>
     <div class="image_greetings">
-        <img src="img/greetings_image.png" />
+        <img src="/img/greetings_image.png" />
     </div>
 </section>
 <section id="booking" class="flex">

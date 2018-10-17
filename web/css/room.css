@@ -96,6 +96,116 @@ section#rooms {
     margin-bottom: 12px;
 }
 
+/**
+Book
+ */
+
+.check_wrapper {
+
+}
+
+.check_label {
+    border-width: 1px;
+    border-style: solid;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 5px 40px;
+    width: 220px;
+}
+
+.check_label#checkin {
+    background: black;
+    color: white;
+    border-color: white;
+}
+
+.check_label#checkout {
+    background: white;
+    color: black;
+    border-color: black;
+}
+
+.check_calendar {
+    min-width: 400px;
+    height: 400px;
+    border: 1px solid lightgrey;
+    margin-bottom: 18px;
+}
+
+.book_checkboxes {
+    align-items: center;
+}
+
+.book_checkboxes * {
+    padding: 0;
+}
+
+.check_select_wrapper,
+select.check_select#checkin {
+    margin-bottom: 38px;
+}
+
+div.flex.check_select_wrapper > div.delete {
+    width: 50px;
+    margin-left: 30px;
+    display: none;
+}
+
+
+.check_select {
+    font-size: 22px;
+    height: 50px;
+    border: 1px solid black;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    width: 150px;
+    background: white;
+}
+
+.book_checkboxes {
+    background: black;
+    align-items: center;
+    color: white;
+    height: 60px;
+    width: 180px;
+}
+
+.book_checkboxes * {
+    background: black;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.book_checkboxes#checkin {
+    margin-right: -80px;
+}
+
+.book_checkboxes#checkout {
+    margin-left: -80px;
+}
+
+.wrapper_check_submit.flex {
+    margin: 60px 0;
+}
+
+.check_submit {
+    display: block;
+    width: 360px;
+    height: 112px;
+    border: 2px solid black;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    font-size: 68px;
+    font-weight: bold;
+}
+
 @media (max-width: 1024px) {
 
     .menu-small {

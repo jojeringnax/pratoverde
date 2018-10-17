@@ -26,22 +26,19 @@ use yii\db\ActiveRecord;
  */
 class Room extends \yii\db\ActiveRecord
 {
+    /**
+     * @var array
+     */
+    private static $types = [
+        'single',
+        'double',
+        'family'
+    ];
 
     /**
      * @var int
      */
     public $countProblems;
-
-
-    /**
-     * Room constructor.
-     * @param array $config
-     */
-    public function __construct(array $config = [])
-    {
-        parent::__construct($config);
-        $this->countProblems = $this->getCountProblems();
-    }
 
     /**
      * {@inheritdoc}
@@ -166,4 +163,14 @@ class Room extends \yii\db\ActiveRecord
          return preg_split('/,/', $this->facilities);
 
     }
+
+    /**
+     * @param $type
+     * @return Room|Room[]
+     */
+    public static function getRoomsForType($type)
+    {
+        return self::find()->where(['type' => array_search($type, self::$types)])->all();
+    }
+
 }

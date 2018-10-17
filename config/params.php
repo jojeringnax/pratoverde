@@ -2,10 +2,9 @@
 $params = [
     'adminEmail' => 'admin@example.com',
     'roomTypes' => [
-        'Normal',
-        'Terrace',
-        'Terrace/Buthtub',
-        'Buthtub/Two Room'
+        'single',
+        'double',
+        'family'
     ],
     'problemStatuses' => [
         'New Problem',

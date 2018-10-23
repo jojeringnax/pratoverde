@@ -20,7 +20,7 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "yiisoft/yii2-jui": "*",
         "bower-asset/bootstrap-datepicker": "*@stable",
-        "mpdf/mpdf": "^7.1"
+        "mpdf/mpdf": "^6.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -10,6 +10,7 @@ namespace app\controllers;
 
 
 use app\models\Room;
+use yii\swiftmailer\Mailer;
 use yii\web\Controller;
 
 class RoomController extends Controller
@@ -28,6 +29,17 @@ class RoomController extends Controller
     public function actionBook($type) {
         if (!in_array(\Yii::$app->request->get('type'), \Yii::$app->params['roomTypes'])) {
             return 'nopr';
+        }
+
+        if (\Yii::$app->request->isPost) {
+            \Yii::$app->mailer->compose()
+                ->setFrom('hollow718@gmail.com')
+                ->setTo('hollow718@gmail.com')
+                ->setSubject('Message subject')
+                ->setTextBody('Plain text content')
+                ->setHtmlBody('<b>HTML content</b>')
+                ->send();
+            return 'nechto';
         }
         $availableRooms = Room::getRoomsForType($type);
         return $this->render('book', [

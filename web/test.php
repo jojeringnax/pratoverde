@@ -1,5 +1,6 @@
 <?php
 $json = file_get_contents('data.json');
+$regions = file_get_contents('regions.json');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,57 @@ $json = file_get_contents('data.json');
     <div class="result" style="position:fixed;width: 20%; height: 100%;left:0;"></div>
     <div id="map" style="position:fixed;width: 80%; height: 100%;right:0;"></div>
 </body>
-<script type="text/javascript">
+<script>
+    ymaps.ready( function() {
+        var regions = JSON.parse('<?= $regions ?>').features;
+        var myMap = new ymaps.Map('map', {
+            center: [55.751574, 37.573856],
+            zoom: 11,
+            behaviors: ['default', 'scrollZoom']
+        }, {
+            searchControlProvider: 'yandex#search'
+        });
+
+        var getMinAndMaxCoordinates = function(array) {
+            var
+                minX = array[0][0],
+                minY = array[0][1],
+                maxX = array[0][0],
+                maxY = array[0][1];
+            for(var i=0;i<array.length;i++) {
+                minX = array[i][0] < minX ? array[i][0] : minX;
+                minY = array[i][1] < minY ? array[i][1] : minY;
+                maxX = array[i][0] > maxX ? array[i][0] : maxX;
+                maxY = array[i][1] > maxY ? array[i][1] : maxY;
+            }
+            return [[minX,minY],[maxX,maxY]];
+        };
+        var f_point, s_point, a_point, spots, autocolumns;
+        for(var i = 0, f_len = regions.length;i < f_len;i++) {
+            f_point = new ymaps.Placemark(regions[i].geometry.coordinates);
+            myMap.geoObjects.add(f_point);
+            autocolumns = regions[i].autocolumns;
+            for(var j = 0, a_len = autocolumns.length, a_array = [];j < a_len;j++) {
+                a_point = new ymaps.Placemark(autocolumns[j].geometry.coordinates);
+                myMap.geoObjects.add(a_point);
+                a_array.push(a_point.geometry._coordinates);
+                spots = autocolumns[j].spots;
+                for (var k = 0, s_len = spots.length, s_array = [];k < s_len;k++) {
+                    s_point = new ymaps.Placemark(spots[k].geometry.coordinates);
+                    myMap.geoObjects.add(s_point);
+                    s_array.push(s_point.geometry._coordinates);
+                }
+                a_point.events.add('click', function() {
+                   myMap.setBounds((getMinAndMaxCoordinates(s_array)));
+                });
+            }
+            f_point.events.add('click', function() {
+                myMap.setBounds(getMinAndMaxCoordinates(a_array));
+            });
+        }
+    })
+</script>
+<!--<script type="text/javascript">
     var pWrap = function(e) {
         return '<p>' + e + '</p>';
     };
@@ -114,5 +165,5 @@ $json = file_get_contents('data.json');
             }
         });
     });
-</script>
+</script> -->
 </html>

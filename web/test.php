@@ -12,6 +12,8 @@ $regions = file_get_contents('regions.json');
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="yan/css/style.css">
     <!-- <link rel="stylesheet" href="css/master.css"> -->
+
+
 </head>
 <body>
     <div class="result" style="position:fixed;width: 20%; height: 100%;left:0;">
@@ -21,7 +23,7 @@ $regions = file_get_contents('regions.json');
             <div class="burger-logo">
               <img src="yan/img/burger-menu.svg" alt="">
             </div>
-            <div class="yan/img-logo">
+            <div class="img-logo">
               <img src="yan/img/logo.svg" alt="">
             </div>
           </div>
@@ -120,7 +122,7 @@ $regions = file_get_contents('regions.json');
               <div class="burger-logo">
                 <img src="yan/img/burger-menu.svg" alt="">
               </div>
-              <div class="yan/img-logo">
+              <div class="img-logo">
                 <img src="yan/img/logo.svg" alt="">
               </div>
             </div>
@@ -203,7 +205,7 @@ $regions = file_get_contents('regions.json');
           <div class="">
             <div id="request-department" class="">
               <div class="request-title">
-                <span class="yan/img"><img src="yan/img/copy.svg" alt="#" class="span-yan/img-h3-2nd"></span>
+                <span class="img"><img src="yan/img/copy.svg" alt="#" class="span-yan/img-h3-2nd"></span>
                 <span id="title-request" class="text">Заявки</span>
               </div>
               <div class="item-info">
@@ -222,7 +224,7 @@ $regions = file_get_contents('regions.json');
           </div>
           <div id="indicators-department" class="indicators-class">
             <div class="indicators-title">
-              <span class="yan/img"><img src="yan/img/pie.svg" alt="#" class="span-yan/img-h3-3nd"></span>
+              <span class="img"><img src="yan/img/pie.svg" alt="#" class="span-yan/img-h3-3nd"></span>
               <span id="h3-indicator" class="text">Показатели компании</span>
             </div>
             <div class="item-bar">
@@ -338,7 +340,7 @@ $regions = file_get_contents('regions.json');
             <div class="burger-logo">
               <img src="yan/img/burger-menu.svg" alt="">
             </div>
-            <div class="yan/img-logo">
+            <div class="img-logo">
               <img src="yan/img/logo.svg" alt="">
             </div>
           </div>
@@ -421,6 +423,7 @@ $regions = file_get_contents('regions.json');
       </section>
     </div>
     <div id="map" style="position:fixed;width: 80%; height: 100%;right:0;"></div>
+
 </body>
 <script type="text/javascript">
     var pWrap = function(e) {
@@ -586,6 +589,6 @@ $regions = file_get_contents('regions.json');
     });
 
 </script> -->
-<script src="yan/js/progressbar.min.js"></script>
-<script src="yan/js/main.js"></script>
+<script src="js_new/progressbar.min.js"></script>
+<script src="js_new/main.js"></script>
 </html>

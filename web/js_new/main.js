@@ -173,118 +173,141 @@ function newInfoCompany(obj) {
 
 function newInfoDASTs(obj) {
   for (key in obj) {
-    for (key in obj) {
-      if (key =="pbs1") {
-        let bar1 = new ProgressBar.Circle('#'+key, {
-          strokeWidth: 12,
-          easing: 'easeInOut',
-          duration: 1400,
-          color: '#27AE60',
-          trailColor: '#eee',
-          trailWidth: 12,
-          svgStyle: null
-        });
-        bar1.animate(obj[key]);
-      } else if(key =="pbs2") {
-        let bar2 = new ProgressBar.Circle('#'+key, {
-          strokeWidth: 12,
-          easing: 'easeInOut',
-          duration: 1400,
-          color: '#27AE60',
-          trailColor: '#eee',
-          trailWidth: 12,
-          svgStyle: null
-        });
-        bar2.animate(obj[key]);
-      } else if(key =="pbs3") {
-        let bar3 = new ProgressBar.Circle('#'+key, {
-          strokeWidth: 12,
-          easing: 'easeInOut',
-          duration: 1400,
-          color: '#27AE60',
-          trailColor: '#eee',
-          trailWidth: 12,
-          svgStyle: null
-        });
-        bar3.animate(obj[key]);
-      } else if(key =="pbs4") {
-        let bar4 = new ProgressBar.Circle('#'+key, {
-          strokeWidth: 12,
-          easing: 'easeInOut',
-          duration: 1400,
-          color: '#27AE60',
-          trailColor: '#eee',
-          trailWidth: 12,
-          svgStyle: null
-        });
-        bar4.animate(obj[key]);
-      } else if(key =="pbs5") {
-        let bar5 = new ProgressBar.Circle('#'+key, {
-          strokeWidth: 12,
-          easing: 'easeInOut',
-          duration: 1400,
-          color: '#27AE60',
-          trailColor: '#eee',
-          trailWidth: 12,
-          svgStyle: null
-        });
-        bar4.animate(obj[key]);
-      } else {
-        $('#'+key).innerHTML(obj[key]);
+      for (key in obj) {
+          if (key == "pbs1") {
+              let bar1 = new ProgressBar.Circle('#' + key, {
+                  strokeWidth: 12,
+                  easing: 'easeInOut',
+                  duration: 1400,
+                  color: '#27AE60',
+                  trailColor: '#eee',
+                  trailWidth: 12,
+                  svgStyle: null
+              });
+              bar1.animate(obj[key]);
+          } else if (key == "pbs2") {
+              let bar2 = new ProgressBar.Circle('#' + key, {
+                  strokeWidth: 12,
+                  easing: 'easeInOut',
+                  duration: 1400,
+                  color: '#27AE60',
+                  trailColor: '#eee',
+                  trailWidth: 12,
+                  svgStyle: null
+              });
+              bar2.animate(obj[key]);
+          } else if (key == "pbs3") {
+              let bar3 = new ProgressBar.Circle('#' + key, {
+                  strokeWidth: 12,
+                  easing: 'easeInOut',
+                  duration: 1400,
+                  color: '#27AE60',
+                  trailColor: '#eee',
+                  trailWidth: 12,
+                  svgStyle: null
+              });
+              bar3.animate(obj[key]);
+          } else if (key == "pbs4") {
+              let bar4 = new ProgressBar.Circle('#' + key, {
+                  strokeWidth: 12,
+                  easing: 'easeInOut',
+                  duration: 1400,
+                  color: '#27AE60',
+                  trailColor: '#eee',
+                  trailWidth: 12,
+                  svgStyle: null
+              });
+              bar4.animate(obj[key]);
+          } else if (key == "pbs5") {
+              let bar5 = new ProgressBar.Circle('#' + key, {
+                  strokeWidth: 12,
+                  easing: 'easeInOut',
+                  duration: 1400,
+                  color: '#27AE60',
+                  trailColor: '#eee',
+                  trailWidth: 12,
+                  svgStyle: null
+              });
+              bar4.animate(obj[key]);
+          } else {
+              $('#' + key).innerHTML(obj[key]);
+          }
       }
-    }
+  }
 }
 
 //nameTS:"BMW "; oilChangeDist: 23 000 км; tireChangeDist: 43 000 км; accChangeDist: 34 ч; toChangeDist: 456722 км; lb1: 0.1; lb2:0.4; lb3: 0.7; lb4: 0.9;
 
   function newInfoTs(obj) {
+    var div;
     for (key in obj) {
-      if (key =="lb1") {
-        var longbar1 = new ProgressBar.Line('#'+key, {
-          strokeWidth: 5,
-          easing: 'easeInOut',
-          duration: 1400,
-          color: '#27AE60',
-          trailColor: '#eee',
-          trailWidth: 5,
-          svgStyle: {'border-radius': '7px'}
-        });
-        longbar1.animate(obj[key]);
-      } else if(key =="lb2") {
-        var longbar2 = new ProgressBar.Line('#'+key, {
-          strokeWidth: 5,
-          easing: 'easeInOut',
-          duration: 1400,
-          color: 'yellow',
-          trailColor: '#eee',
-          trailWidth: 5,
-          svgStyle: {'border-radius': '7px'}
-        });
-        longbar2.animate(obj[key]);
-      } else if(key =="lb3") {
-        var longbar3 = new ProgressBar.Line('#'+key, {
-          strokeWidth: 5,
-          easing: 'easeInOut',
-          duration: 1400,
-          color: 'red',
-          trailColor: '#eee',
-          trailWidth: 5,
-          svgStyle: {'border-radius': '7px'}
-        });
-        longbar3.animate(obj[key]);
-      } else if(key =="lb4") {
-        var longbar4 = new ProgressBar.Line('#'+key, {
-          strokeWidth: 5,
-          easing: 'easeInOut',
-          duration: 1400,
-          color: 'blue',
-          trailColor: '#eee',
-          trailWidth: 5,
-          svgStyle: {'border-radius': '7px'}
-        });
-        longbar4.animate(obj[key]);
+      div = $('div#'+key);
+      if (key == "lb1") {
+        if(div.children.length === 0) {
+            var longbar1 = new ProgressBar.Line('#' + key, {
+                strokeWidth: 5,
+                easing: 'easeInOut',
+                duration: 1400,
+                color: '#27AE60',
+                trailColor: '#eee',
+                trailWidth: 5,
+                svgStyle: {'border-radius': '7px'}
+            });
+            longbar1.animate(obj[key]);
+            div.longbar = longbar1;
+        } else {
+            div.longbar.animate(obj[key]);
+        }
+      } else if(key == "lb2") {
+          if (div.children.length === 0) {
+              var longbar2 = new ProgressBar.Line('#' + key, {
+                  strokeWidth: 5,
+                  easing: 'easeInOut',
+                  duration: 1400,
+                  color: 'yellow',
+                  trailColor: '#eee',
+                  trailWidth: 5,
+                  svgStyle: {'border-radius': '7px'}
+              });
+              longbar2.animate(obj[key]);
+              div.longbar = longbar2;
+          } else {
+              div.longbar.animate(obj[key]);
+          }
+      } else if(key == "lb3") {
+          if (div.children.length === 0) {
+              var longbar3 = new ProgressBar.Line('#' + key, {
+                  strokeWidth: 5,
+                  easing: 'easeInOut',
+                  duration: 1400,
+                  color: 'red',
+                  trailColor: '#eee',
+                  trailWidth: 5,
+                  svgStyle: {'border-radius': '7px'}
+              });
+              longbar3.animate(obj[key]);
+              div.longbar = longbar3;
+          } else {
+              div.longbar.animate(obj[key]);
+          }
+      } else if(key == "lb4") {
+          if (div.children.length === 0) {
+              var longbar4 = new ProgressBar.Line('#'+key, {
+                  strokeWidth: 5,
+                  easing: 'easeInOut',
+                  duration: 1400,
+                  color: 'blue',
+                  trailColor: '#eee',
+                  trailWidth: 5,
+                  svgStyle: {'border-radius': '7px'}
+              });
+              longbar4.animate(obj[key]);
+              div.longbar = longbar4;
+          } else {
+              div.longbar.animate(obj[key]);
+          }
       } else {
-        $('#'+key).innerHTML(obj[key]);
+          $('#'+key).innerHTML = obj[key];
       }
     }
   }

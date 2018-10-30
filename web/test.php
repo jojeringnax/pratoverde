@@ -440,6 +440,19 @@ $regions = file_get_contents('regions.json');
             searchControlProvider: 'yandex#search'
         });
 
+
+        /**
+         * Variable for determinate current depth-view level
+         * @type {number}
+         */
+        window.currentLevel = 0;
+
+        /**
+         * Variable for the choosen element
+         * @type {ymaps.Placemark}
+         */
+        window.currentElement = null;
+
         var setBoundsForPoints = function(map, array) {
             if(array.length === 1) {
                 return map.setCenter(array[0].geometry._coordinates, 11);
@@ -456,80 +469,107 @@ $regions = file_get_contents('regions.json');
                 maxY = array[i].geometry._coordinates[1] > maxY ? array[i].geometry._coordinates[1] : maxY;
             }
             return map.setBounds([[minX,minY],[maxX,maxY]]);
-        };
-        /**
-         * Variable for determinate current depth-view level
-         * @type {number}
-         */
-        window.currentLevel = 0;
-
-        /**
-         * Variable for the choosen element
-         * @type {ymaps.Placemark}
-         */
-        window.currentElement = null;
-
-        var f_point, s_point, a_point, spots, autocolumns;
-        for(var i = 0, f_len = regions.length, f_array = [];i < f_len;i++) {
+        },
+            actionClickPoint = function(map, target) {
+                target.RTOptions.children.forEach(function(el) {
+                    map.geoObjects.add(el);
+                });
+                setBoundsForPoints(map, target.RTOptions.children);
+                if(target.RTOptions.master) {
+                    target.RTOptions.master.RTOptions.children.forEach(function(el) {
+                        map.geoObjects.remove(el);
+                    });
+                } else {
+                    map.geoObjects.remove(target);
+                }
+                window.currentElement = target;
+                if(window.currentLevel !== 0) {
+                    map.controls.add(oneLevelLess);
+                }
+            };
+        var d_point, s_point, a_point, c_point, spots, autocolumns, cars;
+        for(var i = 0, d_len = regions.length, d_array = [];i < d_len;i++) {
             autocolumns = regions[i].autocolumns;
-            f_point = new ymaps.Placemark(regions[i].geometry.coordinates);
+            d_point = new ymaps.Placemark(regions[i].geometry.coordinates);
             for(var j = 0, a_len = autocolumns.length, a_array = [];j < a_len;j++) {
                 spots = autocolumns[j].spots;
                 a_point = new ymaps.Placemark(autocolumns[j].geometry.coordinates);
                 for (var k = 0, s_len = spots.length, s_array = [];k < s_len;k++) {
-                    window.currentLevel = 3;
+                    cars = spots[k].cars;
                     s_point = new ymaps.Placemark(spots[k].geometry.coordinates);
+                    for (var l=0, c_len = cars.length, c_array = [];l < c_len;l++) {
+                        c_point = new ymaps.Placemark(cars[l].geometry.coordinates);
+                        c_point.RTOptions = {
+                            id: cars[l].id,
+                            master: s_point,
+                            status: cars[l].status,
+                            brand: cars[l].brand,
+                            type: cars[l].type,
+                            applications: {done: cars[l].applications.done, canceled: cars[l].applications.canceled, st: cars[l].applications.st},
+                            children: false,
+                            regionType: 'c'
+                        };
+                        c_array.push(c_point);
+                    }
                     s_point.RTOptions = {
-                        id: spots[k],
+                        id: spots[k].id,
                         master: a_point,
-                        children: 0,
+                        children: c_array,
                         regionType: 's'
                     };
+                    s_point.events.add('click', function(e) {
+                        var target = e.originalEvent.target;
+                        window.currentLevel = 3;
+                        actionClickPoint(myMap, target);
+                    });
                     s_array.push(s_point);
                 } // Iteration through the spots  for (var k = 0, s_len = spots.length, s_array = [];k < s_len;k++) {
                 a_point.RTOptions = {
                     id: autocolumns[j].id,
-                    master: f_point,
+                    master: d_point,
                     children: s_array,
                     regionType: 'a'
                 };
                 a_point.events.add('click', function(e) {
                     var target = e.originalEvent.target;
                     window.currentLevel = 2;
-                    target.RTOptions.children.forEach(function(el) {
-                        myMap.geoObjects.add(el);
-                    });
-                    setBoundsForPoints(myMap, s_array);
-                    myMap.geoObjects.remove(target);
-                    window.currentElement = target;
+                    actionClickPoint(myMap, target);
                 });
                 a_array.push(a_point);
             } // Iteration through the autocolumns  for(var j = 0, a_len = autocolumns.length, a_array = [];j < a_len;j++) {
-            f_point.RTOptions = {
+            d_point.RTOptions = {
                 id: regions[i].id,
+                master: false,
                 children: a_array,
-                regionType: 'f'
+                regionType: 'd'
             };
-            f_point.events.add('click', function(e) {
+            d_point.events.add('click', function(e) {
                 var target = e.originalEvent.target;
                 window.currentLevel = 1;
-                target.RTOptions.children.forEach(function(el) {
-                    myMap.geoObjects.add(el);
-                });
-                setBoundsForPoints(myMap, a_array);
-                myMap.geoObjects.remove(target);
-                window.currentElement = target;
+                actionClickPoint(myMap, target);
             });
-            f_array.push(f_point);
-            myMap.geoObjects.add(f_point);
-        } //Iteration through the filials for(var i = 0, f_len = regions.length, f_array = [];i < f_len;i++) {
+            d_array.push(d_point);
+            myMap.geoObjects.add(d_point);
+        } //Iteration through the departments for(var i = 0, d_len = regions.length, d_array = [];i < d_len;i++) {
 
         var oneLevelLess = new ymaps.control.Button('Вернуться на один уровень назад', {float: 'right'});
-        oneLevelLess.events.add('click', function() {
+        oneLevelLess.events.add('click', function(e) {
+            window.currentLevel--;
+            if (window.currentLevel === 0) {
+                window.currentElement.RTOptions.children.forEach(function(el) {
+                    myMap.geoObjects.remove(el);
+                });
+                d_array.forEach(function(el) {
+                   myMap.geoObjects.add(el);
+                });
+                setBoundsForPoints(myMap, d_array);
+                myMap.controls.remove(oneLevelLess);
+                return true;
+            }
             var
                 currentLevelElements = window.currentElement.RTOptions.master.RTOptions.children,
                 currentChildren = window.currentElement.RTOptions.children,
-                currentElementAfterClick = currentLevelElements[0].parent;
+                currentElementAfterClick = window.currentElement.RTOptions.master;
             for(i=0;i<currentChildren.length;i++) {
                 myMap.geoObjects.remove(currentChildren[i]);
             }
@@ -537,122 +577,11 @@ $regions = file_get_contents('regions.json');
                 myMap.geoObjects.add(currentLevelElements[i]);
             }
             setBoundsForPoints(myMap, currentLevelElements);
-            window.currentLevel--;
             window.currentElement = currentElementAfterClick;
         });
-        myMap.controls.add(oneLevelLess);
+
     }); // ymaps.ready(function() {
 </script>
-<!--<script type="text/javascript">
-    var pWrap = function(e) {
-        return '<p>' + e + '</p>';
-    };
-
-    ymaps.ready(function () {
-        function $(e) {return document.querySelector(e);}
-        var
-            cars = JSON.parse('<?= $json ?>').features,
-            geoObjects = [],
-            resultDiv = $('div.result'),
-            writeResult = function(text, append=false) {
-                // if(!append) {resultDiv.innerHTML = text;} else
-                // {resultDiv.innerHTML += text;}
-
-                if(!append) {resultDiv.innerHTML = text;} else
-                {resultDiv.innerHTML += text;}
-
-            },
-            coordinates,
-            properties,
-            balloonContent,
-            pointData,
-            pointOption,
-            point;
-
-        for(var i = 0, len = cars.length, points = [];i < len;i++) {
-            points.push(cars[i].geometry.coordinates);
-            coordinates = cars[i].geometry.coordinates;
-            properties = cars[i].properties;
-            balloonContent = properties.balloonContent;
-            pointData = {
-                balloonContentHeader: pWrap('Car with ID:' + cars[i].id + ' ' + balloonContent.brand) + pWrap('Litres = ' + balloonContent.litr),
-                balloonContentBody: '<p></p>',
-                balloonContentFooter: '<font size=1>Information provided by: placemark </font> balloon <strong>',
-                clusterCaption: 'placemark <strong>',
-                brand: balloonContent.brand,
-                autocolumn_id: balloonContent.autocolumn_id,
-                spot: balloonContent.spot,
-                filial: balloonContent.filial
-            };
-            pointOption = {
-                preset: 'islands#violetIcon'
-            };
-            point = new ymaps.Placemark(coordinates, pointData, pointOption);
-            point.events.add('click', function(e){
-                writeResult(pWrap(e.originalEvent.target.geometry.getCoordinates()));
-                writeResult(pWrap('Autocolumn = ' + e.originalEvent.target.properties._data.autocolumn_id), true);
-            });
-            geoObjects[i] = point;
-        }
-
-        var myMap = new ymaps.Map('map', {
-            center: [55.751574, 37.573856],
-            zoom: 11,
-            behaviors: ['default', 'scrollZoom']
-        }, {
-            searchControlProvider: 'yandex#search'
-        });
-
-        var c = ymaps.geoQuery(geoObjects).searchInside(myMap);
-        myMap.geoObjects.add(c.clusterize());
-        var isSingle = function(pointsArray) {
-
-        var c = ymaps.geoQuery(geoObjects).searchInside(myMap);
-        myMap.geoObjects.add(c.clusterize());
-
-        var isSingle = function(pointsArray) {
-
-            var currentSpot = 0,
-                currentAutocolumn = 0,
-                currentFilial = 0,
-                elZero = pointsArray[0],
-                currentData;
-
-            window.currentStatus = {
-                isSingleSpot: true,
-                isSingleAutocolumn: true,
-                isSingleFilial: true
-            };
-
-            for(var i = 0;i<pointsArray.length;i++) {
-                currentData = pointsArray[i].properties._data;
-                currentSpot = currentData.spot;
-                currentAutocolumn = currentData.autocolumn_id;
-                currentFilial = currentData.filial;
-                window.current = {
-                    spot: elZero.properties._data.spot,
-                    autocolumn: elZero.properties._data.autocolumn_id,
-                    filial: elZero.properties._data.filial
-                };
-
-                if (window.currentStatus.isSingleSpot) {window.currentStatus.isSingleSpot = window.current.spot === currentSpot;}
-                if (window.currentStatus.isSingleAutocolumn) {window.currentStatus.isSingleAutocolumn = window.current.autocolumn === currentAutocolumn;}
-            }
-            return window.currentStatus.isSingleSpot ? 'Spot #:' + currentSpot :
-                window.currentStatus.isSingleAutocolumn ? 'Autocolumn #:' + currentAutocolumn : false;
-        };
-
-        myMap.events.add('boundschange', function(e) {
-            window.pointsVisible = ymaps.geoQuery(geoObjects).searchInside(myMap)._objects;
-            writeResult(isSingle(window.pointsVisible));
-            if (window.pointsVisible.length === 1) {
-                carData = window.pointsVisible[0].properties._data;
-                writeResult(pWrap(carData.brand), true);
-            }
-        });
-    });
-
-</script> -->
 <script src="js_new/progressbar.min.js"></script>
 <script src="js_new/main.js"></script>
 </html>

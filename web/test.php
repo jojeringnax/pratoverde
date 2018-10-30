@@ -17,7 +17,7 @@ $regions = file_get_contents('regions.json');
 </head>
 <body>
     <div class="result" style="position:fixed;width: 20%; height: 100%;left:0;">
-      <section id="info-company" class="hide section-info">
+      <section id="info-company" class="section-info">
         <div class="main-item-result">
           <div class="logo">
             <div class="burger-logo">
@@ -53,7 +53,7 @@ $regions = file_get_contents('regions.json');
 
             <div id="request" class="">
               <div class="request-title">
-                <span class="yan/img"><img src="yan/img/copy.svg" alt="#" class="span-yan/img-h3-2nd"></span>
+                <span class="img"><img src="yan/img/copy.svg" alt="#" class="span-yan/img-h3-2nd"></span>
                 <span id="title-request" class="text">Заявки</span>
               </div>
               <div class="item-info">
@@ -72,7 +72,7 @@ $regions = file_get_contents('regions.json');
 
           <div id="indicators" class="indicators-class">
             <div class="indicators-title">
-              <span class="yan/img"><img src="yan/img/pie.svg" alt="#" class="span-yan/img-h3-3nd"></span>
+              <span class="img"><img src="yan/img/pie.svg" alt="#" class="span-yan/img-h3-3nd"></span>
               <span id="h3-indicator" class="text">Показатели компании</span>
             </div>
             <div class="item-bar">
@@ -124,7 +124,7 @@ $regions = file_get_contents('regions.json');
         </div>
       </section>
 
-      <section id="department-info" class="section-info">
+      <section id="info-department" class="hide section-info">
         <div class="sidebar">
           <div id="head-filial">
             <div class="logo">
@@ -448,7 +448,8 @@ $regions = file_get_contents('regions.json');
     };
 
     ymaps.ready( function() {
-      let MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+        let sectionCompany = $('section#info-company'), sectionDepartment = $('section#info-department'), sectionTS = $('section#ts-info'),
+      MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
           '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
       );
         var regions = JSON.parse('<?= $regions ?>').features;
@@ -512,25 +513,26 @@ $regions = file_get_contents('regions.json');
         for(var i = 0, d_len = regions.length, d_array = [];i < d_len;i++) {
             autocolumns = regions[i].autocolumns;
             d_point = new ymaps.Placemark(regions[i].geometry.coordinates,{
-              iconContent: '43'
-              },{
-              iconLayout: 'default#imageWithContent',
-              iconImageHref: 'yan/img/union.png',
-              // Размеры метки.
-              iconImageSize: [42, 47.5],
-              iconImageOffset: [-24, -24],
-              iconContentOffset: [15, 15],
-              iconContentLayout: MyIconContentLayout
+                iconContent: '43'
+                },{
+                iconLayout: 'default#imageWithContent',
+                iconImageHref: 'yan/img/union.png',
+                iconImageSize: [42, 47.5],
+                iconImageOffset: [-24, -24],
+                iconContentOffset: [15, 15],
+                iconContentLayout: MyIconContentLayout
             });
             for(var j = 0, a_len = autocolumns.length, a_array = [];j < a_len;j++) {
                 spots = autocolumns[j].spots;
                 a_point = new ymaps.Placemark(autocolumns[j].geometry.coordinates,{
                   iconContent: '12'
                   },{
-                  iconLayout: 'default#imageWithContent',
-                  iconContentOffset: [9, 13],
-                  iconImageHref: 'yan/img/badge.png',
-                  iconImageSize: [42, 47.5],
+                    iconLayout: 'default#imageWithContent',
+                    iconContentOffset: [9, 13],
+                    iconImageHref: 'yan/img/union.png',
+                    iconImageSize: [42, 47.5],
+                    iconImageOffset: [-24, -24],
+                    iconContentLayout: MyIconContentLayout
                 });
                 for (var k = 0, s_len = spots.length, s_array = [];k < s_len;k++) {
                     cars = spots[k].cars;
@@ -550,12 +552,29 @@ $regions = file_get_contents('regions.json');
                             id: cars[l].id,
                             master: s_point,
                             status: cars[l].status,
-                            brand: cars[l].brand,
                             type: cars[l].type,
-                            applications: {done: cars[l].applications.done, canceled: cars[l].applications.canceled, st: cars[l].applications.st},
+                            applications: {done: cars[l].application.done, canceled: cars[l].application.canceled, st: cars[l].application.st},
                             children: false,
                             regionType: 'c'
                         };
+                        c_point.RTInfo = {
+                            nameTS: cars[l].brand,
+                            oilChangeDist: '12 000 км',
+                            tireChangeDist: '43 000 км',
+                            accChangeDist: '25 ч',
+                            toChangeDist: '456 000 км',
+                            lb1: cars[l].brand.length/10,
+                            lb2: cars[l].brand.length/16,
+                            lb3: cars[l].brand.length/12,
+                            lb4: cars[l].brand.length/14
+                        };
+                        c_point.events.add('click', function(e) {
+                            var target = e.originalEvent.target;
+                            sectionDepartment.classList.add('hide');
+                            sectionCompany.classList.add('hide');
+                            sectionTS.classList.remove('hide');
+                            newInfoTs(target.RTInfo);
+                        });
                         c_array.push(c_point);
                     }
                     s_point.RTOptions = {
@@ -594,6 +613,9 @@ $regions = file_get_contents('regions.json');
                 var target = e.originalEvent.target;
                 window.currentLevel = 1;
                 actionClickPoint(myMap, target);
+                sectionCompany.classList.add('hide');
+                sectionTS.classList.add('hide');
+                sectionDepartment.classList.remove('hide');
             });
             d_array.push(d_point);
             myMap.geoObjects.add(d_point);

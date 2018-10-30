@@ -84,12 +84,13 @@ p {
 .ts-title {
   display: flex;
   margin-top: 10px;
-  span.ts-img {
+  span.img {
     display: flex;
     align-items: center;
     img {
       height: 14px;
     }
+
   }
 
   span.ts-text {

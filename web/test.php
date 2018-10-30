@@ -28,26 +28,26 @@ $regions = file_get_contents('regions.json');
             </div>
           </div>
           <div id="company-info">
-            <span id="title-company">Компания</span>
+            <span id="nameCompany">Компания</span>
             <div class="ts-title">
-              <span class="ts-yan/img"><img src="yan/img/delivery-truck.svg" alt="#" class="span-yan/img-h3"></span>
+              <span class="img"><img src="yan/img/delivery-truck.svg" alt="#" class="span-yan/img-h3"></span>
               <span id="tranport-means" class="ts-text h3-main">Транспортные средства</span>
             </div>
             <div id="total" class="item-info">
               <span id="" class="trans-auto">Всего, шт.</span>
-              <span id="figure1" class="figures">311</span>
+              <span id="compAmOfTs" class="figures">311</span>
             </div>
             <div class="item-info">
               <p id="on-line" class="trans-auto">На линии, шт.</p>
-              <p id="figure2" class="figures">124</p>
+              <p id="compOnLine" class="figures">124</p>
             </div>
             <div class="item-info">
               <p id="on-repair" class="trans-auto">На ремонте, шт.</p>
-              <p id="figure3" class="figures">3</p>
+              <p id="compOnRep" class="figures">3</p>
             </div>
             <div class="item-info">
               <p id="on-to" class="trans-auto">На ТО, шт.</p>
-              <p id="figure4" class="figures">4</p>
+              <p id="compOnTo" class="figures">4</p>
             </div>
           </div>
 
@@ -58,15 +58,15 @@ $regions = file_get_contents('regions.json');
               </div>
               <div class="item-info">
                 <p id="done" class="trans-auto">Выполнено, шт.</p>
-                <p id="figure5" class="figures">311</p>
+                <p id="compReqDone" class="figures">311</p>
               </div>
               <div class="item-info">
                 <p id="canseled" class="trans-auto">Отменено, шт.</p>
-                <p id="figure6" class="figures">124</p>
+                <p id="compReqCans" class="figures">124</p>
               </div>
               <div class="item-info">
                 <p id="transfered" class="trans-auto">Переданы на СП, шт.</p>
-                <p id="figure7" class="figures">3</p>
+                <p id="compReqTransf" class="figures">3</p>
               </div>
             </div>
 
@@ -77,8 +77,8 @@ $regions = file_get_contents('regions.json');
             </div>
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
-                <p class="p-bar">60%</p>
-                <div id="circle1" class="circle"></div>
+                <p id="cpb_per1" class="p-bar">60%</p>
+                <div id="cpb1" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="filed" class="p-bar-text">Поданы через АС<br/>"Авто-Контроль", %</p>
@@ -86,8 +86,8 @@ $regions = file_get_contents('regions.json');
             </div>
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
-                <p class="p-bar">30%</p>
-                <div id="circle2" class="circle"></div>
+                <p id="cpb_per2" class="p-bar">30%</p>
+                <div id="cpb2" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="processed" class="p-bar-text-str">Обработано ПЛ, %</p>
@@ -95,8 +95,8 @@ $regions = file_get_contents('regions.json');
             </div>
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
-                <p class="p-bar">90%</p>
-                <div id="circle3" class="circle"></div>
+                <p id="cpb_per3" class="p-bar">90%</p>
+                <div id="cpb3" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="dtp" class="p-bar-text">ДТП по вине<br/>компании, %</p>
@@ -104,18 +104,27 @@ $regions = file_get_contents('regions.json');
             </div>
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
-                <p class="p-bar">100%</p>
-                <div id="circle4" class="circle"></div>
+                <p id="cpb_per4" class="p-bar">100%</p>
+                <div id="cpb4" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="mileage" class="p-bar-text">Принятый пробег<br/>по БСМТ, %</p>
+              </div>
+            </div>
+            <div class="item-bar">
+              <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
+                <p id="cpb_per5" class="p-bar">100%</p>
+                <div id="cpb5" class="circle"></div>
+              </div>
+              <div class="div-bar-text">
+                <p id="sla" class="p-bar-text">Принятый пробег<br/>SLA Филиала, %</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="department-info" class="section-info hide ">
+      <section id="department-info" class="section-info">
         <div class="sidebar">
           <div id="head-filial">
             <div class="logo">
@@ -132,30 +141,30 @@ $regions = file_get_contents('regions.json');
             </div>
             <div class="title-department">
               <!-- <a id="a-back" href="#"><img class="a-back" src="yan/img/back.svg" alt="#"></a> -->
-              <span class="title-department-text">Московский филиал</span>
+              <span id="nameofDST" class="title-department-text">Московский филиал</span>
             </div>
             <!-- <h2 id="h2-city" class="h2-city">г. Москва</h2> -->
               <div class="">
                 <!-- <span id="title-company">Компания</span> -->
                 <div class="ts-title">
-                  <span class="ts-yan/img"><img src="yan/img/delivery-truck.svg" alt="#" class="span-yan/img-h3"></span>
+                  <span class="img"><img src="yan/img/delivery-truck.svg" alt="#" class="span-yan/img-h3"></span>
                   <span id="tranport-means" class="ts-text h3-main">Транспортные средства</span>
                 </div>
-                <div id="total-department" class="item-info">
+                <div id="" class="item-info">
                   <span id="" class="trans-auto">Всего, шт.</span>
-                  <span id="figure-department" class="figures">311</span>
+                  <span id="totTs" class="figures">311</span>
                 </div>
                 <div class="item-info">
                   <p id="on-line-department" class="trans-auto">На линии, шт.</p>
-                  <p id="figure-department" class="figures">124</p>
+                  <p id="OnLine" class="figures">124</p>
                 </div>
                 <div class="item-info">
                   <p id="on-repair" class="trans-auto">На ремонте, шт.</p>
-                  <p id="figure-department" class="figures">3</p>
+                  <p id="OnRep" class="figures">3</p>
                 </div>
                 <div class="item-info">
                   <p id="on-to" class="trans-auto">На ТО, шт.</p>
-                  <p id="figure-department" class="figures">4</p>
+                  <p id="onTo" class="figures">4</p>
                 </div>
               </div>
 
@@ -167,7 +176,7 @@ $regions = file_get_contents('regions.json');
                     <p id="passenger-car" class="p-type-transport">Легковые</p>
                   </div>
 
-                  <p id="quantity-passenger" class="p-quantity">40</p>
+                  <p id="passCar" class="p-quantity">40</p>
                 </div>
                 <hr/ class="hr-trans">
 
@@ -176,7 +185,7 @@ $regions = file_get_contents('regions.json');
                     <span class="span-h3-filial"><img src="yan/img/car-2.svg" alt="#" class="span-yan/img-h3-filial"></span>
                     <p id="freight" class="p-type-transport">Грузовые</p>
                   </div>
-                  <p id="quantity-freight" class="p-quantity">221</p>
+                  <p id="freightCar" class="p-quantity">221</p>
                 </div>
                 <hr/ class="hr-trans">
 
@@ -185,7 +194,7 @@ $regions = file_get_contents('regions.json');
                     <span class="span-h3-filial"><img src="yan/img/car-3.svg" alt="#" class="span-yan/img-h3-filial"></span>
                     <p id="bus" class="p-type-transport">Автобусы</p>
                   </div>
-                  <p id="quantity-bus" class="p-quantity">20</p>
+                  <p id="busCar" class="p-quantity">20</p>
                 </div>
                 <hr/ class="hr-trans">
 
@@ -194,7 +203,7 @@ $regions = file_get_contents('regions.json');
                     <span class="span-h3-filial"><img src="yan/img/car-4.svg" alt="#" class="span-yan/img-h3-filial"></span>
                     <p id="spec" class="p-type-transport">Спецтехника</p>
                   </div>
-                  <p id="quantity-spec" class="p-quantity">12</p>
+                  <p id="specCar" class="p-quantity">12</p>
 
                 </div>
                 <hr/ class="hr-trans">
@@ -210,15 +219,15 @@ $regions = file_get_contents('regions.json');
               </div>
               <div class="item-info">
                 <p id="" class="trans-auto">Выполнено, шт.</p>
-                <p id="done-request-department" class="figures">311</p>
+                <p id="ReqDone" class="figures">311</p>
               </div>
               <div class="item-info">
                 <p id="" class="trans-auto">Отменено, шт.</p>
-                <p id="canseled-request-department" class="figures">124</p>
+                <p id="ReqCans" class="figures">124</p>
               </div>
               <div class="item-info">
                 <p id="" class="trans-auto">Переданы на СП, шт.</p>
-                <p id="transfered-request-department" class="figures">3</p>
+                <p id="ReqTransf" class="figures">3</p>
               </div>
             </div>
           </div>
@@ -229,8 +238,8 @@ $regions = file_get_contents('regions.json');
             </div>
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
-                <p class="p-bar">60%</p>
-                <div id="circle1" class="circle"></div>
+                <p id="bps_per1" class="p-bar">60%</p>
+                <div id="bps1" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="filed" class="p-bar-text">Поданы через АС<br/>"Авто-Контроль", %</p>
@@ -238,8 +247,8 @@ $regions = file_get_contents('regions.json');
             </div>
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
-                <p class="p-bar">30%</p>
-                <div id="circle2" class="circle"></div>
+                <p id="bps_per2" class="p-bar">30%</p>
+                <div id="bps2" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="processed" class="p-bar-text-str">Обработано ПЛ, %</p>
@@ -247,8 +256,8 @@ $regions = file_get_contents('regions.json');
             </div>
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
-                <p class="p-bar">90%</p>
-                <div id="circle3" class="circle"></div>
+                <p id="bps_per2" class="p-bar">90%</p>
+                <div id="bps3" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="dtp" class="p-bar-text">ДТП по вине<br/>компании, %</p>
@@ -256,11 +265,20 @@ $regions = file_get_contents('regions.json');
             </div>
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
-                <p class="p-bar">100%</p>
-                <div id="circle4" class="circle"></div>
+                <p id="bps_per4" class="p-bar">100%</p>
+                <div id="bps4" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="mileage" class="p-bar-text">Принятый пробег<br/>по БСМТ, %</p>
+              </div>
+            </div>
+            <div class="item-bar">
+              <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
+                <p id="bps_per5" lass="p-bar">100%</p>
+                <div id="pbs5" class="circle"></div>
+              </div>
+              <div class="div-bar-text">
+                <p id="sla" class="p-bar-text">Принятый пробег<br/>SLA Филиала, %</p>
               </div>
             </div>
           </div>
@@ -330,11 +348,9 @@ $regions = file_get_contents('regions.json');
               </div>
             </div> -->
           </div>
-
-
       </section>
 
-      <section id="ts-info" class="section-info">
+      <section id="ts-info" class="section-info hide">
         <div id="head-filial">
           <div class="logo">
             <div class="burger-logo">
@@ -356,7 +372,7 @@ $regions = file_get_contents('regions.json');
             <span id="level-menu-company" class="text-level-menu">Транспортное средство</span>
           </div>
           <div class="title-ts">
-            <span class="title-ts-text">ТС №93 BMW</span>
+            <span id="nameTS" class="title-ts-text">ТС №93 BMW</span>
           </div>
           <div class="">
             <div id="route" class="">
@@ -366,15 +382,15 @@ $regions = file_get_contents('regions.json');
               </div>
               <div class="item-info">
                 <p id="" class="trans-auto">Кол-во пройденного пути, км</p>
-                <p id="done-route" class="figures">1300</p>
+                <p id="doneRoute" class="figures">1300</p>
               </div>
               <div class="item-info">
                 <p id="" class="trans-auto">Кол-во отработанного t, ч.</p>
-                <p id="canseled-request-department" class="figures">10</p>
+                <p id="" class="figures">10</p>
               </div>
               <div class="item-info">
                 <p id="" class="trans-auto">Объем потреченного топлива, л.</p>
-                <p id="transfered-request-department" class="figures">12</p>
+                <p id="AmOfFuel" class="figures">12</p>
               </div>
             </div>
           </div>
@@ -383,30 +399,30 @@ $regions = file_get_contents('regions.json');
               <img class="yan/img-distance" src="yan/img/fuel.svg" alt="">
             </div>
             <div class="plr-col-distance">
-              <p id="total" class="distance-figure">50 000 км</p>
+              <p id="oilChangeDist" class="distance-figure">50 000 км</p>
               <p id="total" class="distance-text">До замены масла</p>
             </div>
-            <div id="oilLongbar" class="longlar"></div>
+            <div id="lb1" class="longlar"></div>
           </div>
           <div id="wheel" class="item-distance">
             <div class="plr-yan/img-distance my-auto">
               <img class="yan/img-distance" src="yan/img/wheel.svg" alt="">
             </div>
             <div class="plr-col-distance">
-              <p id="total" class="distance-figure">2 000 км</p>
+              <p id="tireChangeDist" class="distance-figure">2 000 км</p>
               <p id="total" class="distance-text">До замены шин</p>
             </div>
-            <div id="wheelLongbar" class="longlar"></div>
+            <div id="lb2" class="longlar"></div>
           </div>
           <div id="wheel" class="item-distance">
             <div class="plr-yan/img-distance my-auto">
               <img class="yan/img-distance" src="yan/img/battery.svg" alt="">
             </div>
             <div class="plr-col-distance">
-              <p id="total" class="distance-figure">23 000 часа</p>
+              <p id="accChangeDist" class="distance-figure">23 000 часа</p>
               <p id="total" class="distance-text">До замены АКБ</p>
             </div>
-            <div id="totalLongbar" class="longlar"></div>
+            <div id="lb3" class="longlar"></div>
           </div>
 
           <div id="wheel" class="item-distance">
@@ -414,10 +430,10 @@ $regions = file_get_contents('regions.json');
               <img class="yan/img-distance" src="yan/img/key.svg" alt="">
             </div>
             <div class="plr-col-distance">
-              <p id="total" class="distance-figure">70 000 км</p>
+              <p id="toChangeDist" class="distance-figure">70 000 км</p>
               <p id="total" class="distance-text">До ТО</p>
             </div>
-            <div id="repairLongbar" class="longlar"></div>
+            <div id="lb4" class="longlar"></div>
           </div>
         </div>
       </section>
@@ -426,11 +442,15 @@ $regions = file_get_contents('regions.json');
 
 </body>
 <script type="text/javascript">
+
     var pWrap = function(e) {
         return '<p>' + e + '</p>';
     };
 
     ymaps.ready( function() {
+      let MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+          '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+      );
         var regions = JSON.parse('<?= $regions ?>').features;
         var myMap = new ymaps.Map('map', {
             center: [55.751574, 37.573856],
@@ -456,16 +476,53 @@ $regions = file_get_contents('regions.json');
         };
         var f_point, s_point, a_point, spots, autocolumns;
         for(var i = 0, f_len = regions.length;i < f_len;i++) {
-            f_point = new ymaps.Placemark(regions[i].geometry.coordinates);
+            f_point = new ymaps.Placemark(regions[i].geometry.coordinates,{
+              iconContent: '43'
+              },{
+              iconLayout: 'default#imageWithContent',
+              // Своё изображение иконки метки.
+              iconImageHref: 'yan/img/union.png',
+              // Размеры метки.
+              iconImageSize: [42, 47.5],
+              iconImageOffset: [-24, -24],
+              iconContentOffset: [15, 15],
+              iconContentLayout: MyIconContentLayout
+              // Смещение левого верхнего угла иконки относительно
+              // её "ножки" (точки привязки).
+            });
             myMap.geoObjects.add(f_point);
             autocolumns = regions[i].autocolumns;
             for(var j = 0, a_len = autocolumns.length, a_array = [];j < a_len;j++) {
-                a_point = new ymaps.Placemark(autocolumns[j].geometry.coordinates);
+                a_point = new ymaps.Placemark(autocolumns[j].geometry.coordinates,{
+                  iconContent: '12'
+                  },{
+                  iconLayout: 'default#image',
+                  // Своё изображение иконки метки.
+                  iconImageHref: 'yan/img/badge.png',
+                  // Размеры метки.
+                  iconImageSize: [42, 47.5],
+                  // Смещение левого верхнего угла иконки относительно
+                  // её "ножки" (точки привязки).
+                });
+                console.log(a_point);
                 myMap.geoObjects.add(a_point);
                 a_array.push(a_point.geometry._coordinates);
                 spots = autocolumns[j].spots;
                 for (var k = 0, s_len = spots.length, s_array = [];k < s_len;k++) {
-                    s_point = new ymaps.Placemark(spots[k].geometry.coordinates);
+                    s_point = new ymaps.Placemark(spots[k].geometry.coordinates,{
+                      iconContent: '1123'
+                      },{
+                      iconLayout: 'default#imageWithContent',
+                      // Своё изображение иконки метки.
+                      iconImageHref: 'yan/img/union.png',
+                      // Размеры метки.
+                      iconImageSize: [42, 47.5],
+                      iconContentOffset: [9, 13],
+                      iconImageOffset: [-24, -24],
+                      iconContentLayout: MyIconContentLayout
+                      // Смещение левого верхнего угла иконки относительно
+                      // её "ножки" (точки привязки).
+                    });
                     myMap.geoObjects.add(s_point);
                     s_array.push(s_point.geometry._coordinates);
                 }

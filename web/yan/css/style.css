@@ -55,10 +55,10 @@ p {
 .ts-title {
   display: flex;
   margin-top: 10px; }
-  .ts-title span.ts-img {
+  .ts-title span.img {
     display: flex;
     align-items: center; }
-    .ts-title span.ts-img img {
+    .ts-title span.img img {
       height: 14px; }
   .ts-title span.ts-text {
     font-size: 12px !important;

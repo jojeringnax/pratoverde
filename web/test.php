@@ -440,44 +440,108 @@ $regions = file_get_contents('regions.json');
             searchControlProvider: 'yandex#search'
         });
 
-        var getMinAndMaxCoordinates = function(array) {
+        var setBoundsForPoints = function(map, array) {
+            if(array.length === 1) {
+                return map.setCenter(array[0].geometry._coordinates, 11);
+            }
             var
-                minX = array[0][0],
-                minY = array[0][1],
-                maxX = array[0][0],
-                maxY = array[0][1];
+                minX = array[0].geometry._coordinates[0],
+                minY = array[0].geometry._coordinates[1],
+                maxX = array[0].geometry._coordinates[0],
+                maxY = array[0].geometry._coordinates[1];
             for(var i=0;i<array.length;i++) {
-                minX = array[i][0] < minX ? array[i][0] : minX;
-                minY = array[i][1] < minY ? array[i][1] : minY;
-                maxX = array[i][0] > maxX ? array[i][0] : maxX;
-                maxY = array[i][1] > maxY ? array[i][1] : maxY;
+                minX = array[i].geometry._coordinates[0] < minX ? array[i].geometry._coordinates[0] : minX;
+                minY = array[i].geometry._coordinates[1] < minY ? array[i].geometry._coordinates[1] : minY;
+                maxX = array[i].geometry._coordinates[0] > maxX ? array[i].geometry._coordinates[0] : maxX;
+                maxY = array[i].geometry._coordinates[1] > maxY ? array[i].geometry._coordinates[1] : maxY;
             }
-            return [[minX,minY],[maxX,maxY]];
+            return map.setBounds([[minX,minY],[maxX,maxY]]);
         };
+        /**
+         * Variable for determinate current depth-view level
+         * @type {number}
+         */
+        window.currentLevel = 0;
+
+        /**
+         * Variable for the choosen element
+         * @type {ymaps.Placemark}
+         */
+        window.currentElement = null;
+
         var f_point, s_point, a_point, spots, autocolumns;
-        for(var i = 0, f_len = regions.length;i < f_len;i++) {
-            f_point = new ymaps.Placemark(regions[i].geometry.coordinates);
-            myMap.geoObjects.add(f_point);
+        for(var i = 0, f_len = regions.length, f_array = [];i < f_len;i++) {
             autocolumns = regions[i].autocolumns;
+            f_point = new ymaps.Placemark(regions[i].geometry.coordinates);
             for(var j = 0, a_len = autocolumns.length, a_array = [];j < a_len;j++) {
-                a_point = new ymaps.Placemark(autocolumns[j].geometry.coordinates);
-                myMap.geoObjects.add(a_point);
-                a_array.push(a_point.geometry._coordinates);
                 spots = autocolumns[j].spots;
+                a_point = new ymaps.Placemark(autocolumns[j].geometry.coordinates);
                 for (var k = 0, s_len = spots.length, s_array = [];k < s_len;k++) {
+                    window.currentLevel = 3;
                     s_point = new ymaps.Placemark(spots[k].geometry.coordinates);
-                    myMap.geoObjects.add(s_point);
-                    s_array.push(s_point.geometry._coordinates);
-                }
-                a_point.events.add('click', function() {
-                   myMap.setBounds((getMinAndMaxCoordinates(s_array)));
+                    s_point.RTOptions = {
+                        id: spots[k],
+                        master: a_point,
+                        children: 0,
+                        regionType: 's'
+                    };
+                    s_array.push(s_point);
+                } // Iteration through the spots  for (var k = 0, s_len = spots.length, s_array = [];k < s_len;k++) {
+                a_point.RTOptions = {
+                    id: autocolumns[j].id,
+                    master: f_point,
+                    children: s_array,
+                    regionType: 'a'
+                };
+                a_point.events.add('click', function(e) {
+                    var target = e.originalEvent.target;
+                    window.currentLevel = 2;
+                    target.RTOptions.children.forEach(function(el) {
+                        myMap.geoObjects.add(el);
+                    });
+                    setBoundsForPoints(myMap, s_array);
+                    myMap.geoObjects.remove(target);
+                    window.currentElement = target;
                 });
-            }
-            f_point.events.add('click', function() {
-                myMap.setBounds(getMinAndMaxCoordinates(a_array));
+                a_array.push(a_point);
+            } // Iteration through the autocolumns  for(var j = 0, a_len = autocolumns.length, a_array = [];j < a_len;j++) {
+            f_point.RTOptions = {
+                id: regions[i].id,
+                children: a_array,
+                regionType: 'f'
+            };
+            f_point.events.add('click', function(e) {
+                var target = e.originalEvent.target;
+                window.currentLevel = 1;
+                target.RTOptions.children.forEach(function(el) {
+                    myMap.geoObjects.add(el);
+                });
+                setBoundsForPoints(myMap, a_array);
+                myMap.geoObjects.remove(target);
+                window.currentElement = target;
             });
-        }
-    })
+            f_array.push(f_point);
+            myMap.geoObjects.add(f_point);
+        } //Iteration through the filials for(var i = 0, f_len = regions.length, f_array = [];i < f_len;i++) {
+
+        var oneLevelLess = new ymaps.control.Button('Вернуться на один уровень назад', {float: 'right'});
+        oneLevelLess.events.add('click', function() {
+            var
+                currentLevelElements = window.currentElement.RTOptions.master.RTOptions.children,
+                currentChildren = window.currentElement.RTOptions.children,
+                currentElementAfterClick = currentLevelElements[0].parent;
+            for(i=0;i<currentChildren.length;i++) {
+                myMap.geoObjects.remove(currentChildren[i]);
+            }
+            for(i=0;i<currentLevelElements.length;i++) {
+                myMap.geoObjects.add(currentLevelElements[i]);
+            }
+            setBoundsForPoints(myMap, currentLevelElements);
+            window.currentLevel--;
+            window.currentElement = currentElementAfterClick;
+        });
+        myMap.controls.add(oneLevelLess);
+    }); // ymaps.ready(function() {
 </script>
 <!--<script type="text/javascript">
     var pWrap = function(e) {

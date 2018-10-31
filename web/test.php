@@ -78,7 +78,7 @@ $regions = file_get_contents('regions.json');
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
                 <p id="cpb_per1" class="p-bar">60%</p>
-                <div id="cpb1" class="circle"></div>
+                <div id="circle1" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="filed" class="p-bar-text">Поданы через АС<br/>"Авто-Контроль", %</p>
@@ -87,7 +87,7 @@ $regions = file_get_contents('regions.json');
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
                 <p id="cpb_per2" class="p-bar">30%</p>
-                <div id="cpb2" class="circle"></div>
+                <div id="circle2" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="processed" class="p-bar-text-str">Обработано ПЛ, %</p>
@@ -96,7 +96,7 @@ $regions = file_get_contents('regions.json');
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
                 <p id="cpb_per3" class="p-bar">90%</p>
-                <div id="cpb3" class="circle"></div>
+                <div id="circle3" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="dtp" class="p-bar-text">ДТП по вине<br/>компании, %</p>
@@ -105,7 +105,7 @@ $regions = file_get_contents('regions.json');
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
                 <p id="cpb_per4" class="p-bar">100%</p>
-                <div id="cpb4" class="circle"></div>
+                <div id="circle4" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="mileage" class="p-bar-text">Принятый пробег<br/>по БСМТ, %</p>
@@ -114,7 +114,7 @@ $regions = file_get_contents('regions.json');
             <div class="item-bar">
               <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
                 <p id="cpb_per5" class="p-bar">100%</p>
-                <div id="cpb5" class="circle"></div>
+                <div id="circle5" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="sla" class="p-bar-text">Принятый пробег<br/>SLA Филиала, %</p>
@@ -229,45 +229,45 @@ $regions = file_get_contents('regions.json');
               <span id="h3-indicator" class="text">Показатели компании</span>
             </div>
             <div class="item-bar">
-              <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
+              <div class="ilia" style="display:flex; justify-content:center; align-items:center; position:relative;">
                 <p id="bps_per1" class="p-bar">60%</p>
-                <div id="bps1" class="circle"></div>
+                <div id="spb1" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="filed" class="p-bar-text">Поданы через АС<br/>"Авто-Контроль", %</p>
               </div>
             </div>
             <div class="item-bar">
-              <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
+              <div class="ilia" style="display:flex; justify-content:center; align-items:center; position:relative;">
                 <p id="bps_per2" class="p-bar">30%</p>
-                <div id="bps2" class="circle"></div>
+                <div id="spb2" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="processed" class="p-bar-text-str">Обработано ПЛ, %</p>
               </div>
             </div>
             <div class="item-bar">
-              <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
+              <div class="ilia" style="display:flex; justify-content:center; align-items:center; position:relative;">
                 <p id="bps_per2" class="p-bar">90%</p>
-                <div id="bps3" class="circle"></div>
+                <div id="spb3" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="dtp" class="p-bar-text">ДТП по вине<br/>компании, %</p>
               </div>
             </div>
             <div class="item-bar">
-              <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
+              <div class="ilia" style="display:flex; justify-content:center; align-items:center; position:relative;">
                 <p id="bps_per4" class="p-bar">100%</p>
-                <div id="bps4" class="circle"></div>
+                <div id="spb4" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="mileage" class="p-bar-text">Принятый пробег<br/>по БСМТ, %</p>
               </div>
             </div>
             <div class="item-bar">
-              <div class="" style="display:flex; justify-content:center; align-items:center; position:relative; margin-left: 15px;">
+              <div class="ilia" style="display:flex; justify-content:center; align-items:center; position:relative;">
                 <p id="bps_per5" lass="p-bar">100%</p>
-                <div id="pbs5" class="circle"></div>
+                <div id="spb5" class="circle"></div>
               </div>
               <div class="div-bar-text">
                 <p id="sla" class="p-bar-text">Принятый пробег<br/>SLA Филиала, %</p>
@@ -478,7 +478,7 @@ $regions = file_get_contents('regions.json');
                   iconContent: '12'
                   },{
                     iconLayout: 'default#imageWithContent',
-                    iconContentOffset: [9, 13],
+                    iconContentOffset: [15, 15],
                     iconImageHref: 'yan/img/union.png',
                     iconImageSize: [42, 47.5],
                     iconImageOffset: [-24, -24],
@@ -497,7 +497,15 @@ $regions = file_get_contents('regions.json');
                       iconContentLayout: MyIconContentLayout
                     });
                     for (var l=0, c_len = cars.length, c_array = [], c_dep, c_autocolumn, c_spot;l < c_len;l++) {
-                        c_point = new ymaps.Placemark(cars[l].geometry.coordinates);
+                        c_point = new ymaps.Placemark(cars[l].geometry.coordinates,{
+                          iconContent: ''
+                          },{
+                          iconLayout: 'default#imageWithContent',
+                          iconImageHref: 'yan/img/point_'+cars[l].type+'.png',
+                          iconImageSize: [42, 47.5],
+                          iconContentOffset: [9, 13],
+                          iconImageOffset: [-24, -24],
+                          iconContentLayout: MyIconContentLayout});
                         c_point.RTOptions = {
                             id: cars[l].id,
                             master: s_point,
@@ -571,6 +579,15 @@ $regions = file_get_contents('regions.json');
                 regionType: 'd',
                 regionName: regions[i].regionName
             };
+            d_point.RTInfo = {
+              'spb': {
+                'spb1':0.2,
+                'spb2':0.5,
+                'spb3':1.0,
+                'spb4':0.6,
+                'spb5':0.9
+              }
+            };
             d_point.events.add('click', function(e) {
                 var target = e.originalEvent.target;
                 window.currentLevel = 1;
@@ -580,6 +597,7 @@ $regions = file_get_contents('regions.json');
                 sectionDepartment.classList.remove('hide');
                 console.log(levelMenuDepDepartment);
                 levelMenuDepDepartment.innerText = target.RTOptions.regionName;
+                newInfoDASTs(d_point.RTInfo);
             });
             d_array.push(d_point);
             myMap.geoObjects.add(d_point);

@@ -102,7 +102,10 @@ p {
   margin-top: 50px;
   display: flex;
   justify-content: flex-start;
-  width: 100%; }
+  width: 200px; }
+  .item-bar .ilia {
+    width: 35px;
+    height: 35px; }
 
 .div-bar-text {
   margin-left: 40px; }

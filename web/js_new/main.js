@@ -1,51 +1,72 @@
+
+var bar1 = new ProgressBar.Circle('#circle1', {
+  strokeWidth: 12,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#27AE60',
+  trailColor: '#eee',
+  trailWidth: 12,
+  svgStyle: null
+});
+
+bar1.animate(0.6);  // Number from 0.0 to 1.0
+
+var bar2 = new ProgressBar.Circle('#circle2', {
+  strokeWidth: 12,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#27AE60',
+  trailColor: '#eee',
+  trailWidth: 12,
+  svgStyle: null
+});
+
+bar2.animate(0.3);  // Number from 0.0 to 1.0
+
+var bar3 = new ProgressBar.Circle('#circle3', {
+  strokeWidth: 12,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#27AE60',
+  trailColor: '#eee',
+  trailWidth: 12,
+  svgStyle: null
+});
+
+bar3.animate(0.9);  // Number from 0.0 to 1.0
+
+var bar4 = new ProgressBar.Circle('#circle4', {
+  strokeWidth: 12,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#27AE60',
+  trailColor: '#eee',
+  trailWidth: 12,
+  svgStyle: null
+});
 //
-// var bar1 = new ProgressBar.Circle('#circle1', {
-//   strokeWidth: 12,
-//   easing: 'easeInOut',
-//   duration: 1400,
-//   color: '#27AE60',
-//   trailColor: '#eee',
-//   trailWidth: 12,
-//   svgStyle: null
-// });
-//
-// // bar1.animate(0.6);  // Number from 0.0 to 1.0
-//
-// var bar2 = new ProgressBar.Circle('#circle2', {
-//   strokeWidth: 12,
-//   easing: 'easeInOut',
-//   duration: 1400,
-//   color: '#27AE60',
-//   trailColor: '#eee',
-//   trailWidth: 12,
-//   svgStyle: null
-// });
-//
-// // bar2.animate(0.3);  // Number from 0.0 to 1.0
-//
-// var bar3 = new ProgressBar.Circle('#circle3', {
-//   strokeWidth: 12,
-//   easing: 'easeInOut',
-//   duration: 1400,
-//   color: '#27AE60',
-//   trailColor: '#eee',
-//   trailWidth: 12,
-//   svgStyle: null
-// });
-//
-// // bar3.animate(0.9);  // Number from 0.0 to 1.0
-//
-// var bar4 = new ProgressBar.Circle('#circle4', {
-//   strokeWidth: 12,
-//   easing: 'easeInOut',
-//   duration: 1400,
-//   color: '#27AE60',
-//   trailColor: '#eee',
-//   trailWidth: 12,
-//   svgStyle: null
-// });
-//
-// // bar4.animate(1.0);  // Number from 0.0 to 1.0
+bar4.animate(1.0);  // Number from 0.0 to 1.0
+
+var bar5 = new ProgressBar.Circle('#circle5', {
+  strokeWidth: 12,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#27AE60',
+  trailColor: '#eee',
+  trailWidth: 12,
+  svgStyle: null
+});
+
+bar5.animate(1.0);  // Number from 0.0 to 1.0
+
+function dBar(obj) {
+  var div;
+  for (key in obj) {
+    for (key in obj) {
+
+    }
+  }
+}
 //
 // //longbar
 //
@@ -173,9 +194,10 @@ function newInfoCompany(obj) {
 
 function newInfoDASTs(obj) {
   for (key in obj) {
-      for (key in obj) {
-          if (key == "pbs1") {
-              let bar1 = new ProgressBar.Circle('#' + key, {
+    if (key === 'spb') {
+      for (bar in obj[key]) {
+          if (bar == "spb1") {
+              let bar1 = new ProgressBar.Circle('#' + bar, {
                   strokeWidth: 12,
                   easing: 'easeInOut',
                   duration: 1400,
@@ -184,9 +206,9 @@ function newInfoDASTs(obj) {
                   trailWidth: 12,
                   svgStyle: null
               });
-              bar1.animate(obj[key]);
-          } else if (key == "pbs2") {
-              let bar2 = new ProgressBar.Circle('#' + key, {
+              bar1.animate(obj[key][bar]);
+          } else if (bar == "spb2") {
+              let bar2 = new ProgressBar.Circle('#' + bar, {
                   strokeWidth: 12,
                   easing: 'easeInOut',
                   duration: 1400,
@@ -195,9 +217,9 @@ function newInfoDASTs(obj) {
                   trailWidth: 12,
                   svgStyle: null
               });
-              bar2.animate(obj[key]);
-          } else if (key == "pbs3") {
-              let bar3 = new ProgressBar.Circle('#' + key, {
+              bar2.animate(obj[key][bar]);
+          } else if (bar == "spb3") {
+              let bar3 = new ProgressBar.Circle('#' + bar, {
                   strokeWidth: 12,
                   easing: 'easeInOut',
                   duration: 1400,
@@ -206,9 +228,9 @@ function newInfoDASTs(obj) {
                   trailWidth: 12,
                   svgStyle: null
               });
-              bar3.animate(obj[key]);
-          } else if (key == "pbs4") {
-              let bar4 = new ProgressBar.Circle('#' + key, {
+              bar3.animate(obj[key][bar]);
+          } else if (bar == "spb4") {
+              let bar4 = new ProgressBar.Circle('#' + bar, {
                   strokeWidth: 12,
                   easing: 'easeInOut',
                   duration: 1400,
@@ -217,9 +239,9 @@ function newInfoDASTs(obj) {
                   trailWidth: 12,
                   svgStyle: null
               });
-              bar4.animate(obj[key]);
-          } else if (key == "pbs5") {
-              let bar5 = new ProgressBar.Circle('#' + key, {
+              bar4.animate(obj[key][bar]);
+          } else if (bar == "spb5") {
+              let bar5 = new ProgressBar.Circle('#' + bar, {
                   strokeWidth: 12,
                   easing: 'easeInOut',
                   duration: 1400,
@@ -228,11 +250,12 @@ function newInfoDASTs(obj) {
                   trailWidth: 12,
                   svgStyle: null
               });
-              bar4.animate(obj[key]);
+              bar5.animate(obj[key][bar]);
           } else {
-              $('#' + key).innerHTML(obj[key]);
+              $('#' + bar).innerHTML(obj[key][bar]);
           }
       }
+    }
   }
 }
 

@@ -135,80 +135,72 @@ $regions = file_get_contents('regions.json');
                 <img src="yan/img/logo.svg" alt="">
               </div>
             </div>
-            <div class="level-menu">
+            <div id="department" class="level-menu">
               <span id="level-menu-company" class="text-level-menu">Компания</span>
               <img src="yan/img/arrow.svg" alt="">
+              <span id="level-menu-department" class="text-level-menu">Филиал</span>
             </div>
             <div class="title-department">
-              <!-- <a id="a-back" href="#"><img class="a-back" src="yan/img/back.svg" alt="#"></a> -->
               <span id="nameofDST" class="title-department-text">Московский филиал</span>
             </div>
-            <!-- <h2 id="h2-city" class="h2-city">г. Москва</h2> -->
-              <div class="">
-                <!-- <span id="title-company">Компания</span> -->
-                <div class="ts-title">
-                  <span class="img"><img src="yan/img/delivery-truck.svg" alt="#" class="span-yan/img-h3"></span>
-                  <span id="tranport-means" class="ts-text h3-main">Транспортные средства</span>
-                </div>
-                <div id="" class="item-info">
-                  <span id="" class="trans-auto">Всего, шт.</span>
-                  <span id="totTs" class="figures">311</span>
-                </div>
-                <div class="item-info">
-                  <p id="on-line-department" class="trans-auto">На линии, шт.</p>
-                  <p id="OnLine" class="figures">124</p>
-                </div>
-                <div class="item-info">
-                  <p id="on-repair" class="trans-auto">На ремонте, шт.</p>
-                  <p id="OnRep" class="figures">3</p>
-                </div>
-                <div class="item-info">
-                  <p id="on-to" class="trans-auto">На ТО, шт.</p>
-                  <p id="onTo" class="figures">4</p>
-                </div>
+            <div class="">
+              <div class="ts-title">
+                <span class="img"><img src="yan/img/delivery-truck.svg" alt="#" class="span-yan/img-h3"></span>
+                <span id="tranport-means" class="ts-text h3-main">Транспортные средства</span>
               </div>
-
-              <div class="div-transport">
-                <hr/ class="hr-trans">
-                <div class="item-info transort-department">
-                  <div class="transport-title">
-                    <span class="span-h3-filial"><img src="yan/img/car-1.svg" alt="#" class="span-yan/img-h3-filial"></span>
-                    <p id="passenger-car" class="p-type-transport">Легковые</p>
-                  </div>
-
-                  <p id="passCar" class="p-quantity">40</p>
-                </div>
-                <hr/ class="hr-trans">
-
-                <div class="item-info transort-department">
-                  <div class="transport-title">
-                    <span class="span-h3-filial"><img src="yan/img/car-2.svg" alt="#" class="span-yan/img-h3-filial"></span>
-                    <p id="freight" class="p-type-transport">Грузовые</p>
-                  </div>
-                  <p id="freightCar" class="p-quantity">221</p>
-                </div>
-                <hr/ class="hr-trans">
-
-                <div class="item-info transort-department">
-                  <div class="transport-title">
-                    <span class="span-h3-filial"><img src="yan/img/car-3.svg" alt="#" class="span-yan/img-h3-filial"></span>
-                    <p id="bus" class="p-type-transport">Автобусы</p>
-                  </div>
-                  <p id="busCar" class="p-quantity">20</p>
-                </div>
-                <hr/ class="hr-trans">
-
-                <div class="item-info transort-department">
-                  <div class="transport-title">
-                    <span class="span-h3-filial"><img src="yan/img/car-4.svg" alt="#" class="span-yan/img-h3-filial"></span>
-                    <p id="spec" class="p-type-transport">Спецтехника</p>
-                  </div>
-                  <p id="specCar" class="p-quantity">12</p>
-
-                </div>
-                <hr/ class="hr-trans">
+              <div id="" class="item-info">
+                <span id="" class="trans-auto">Всего, шт.</span>
+                <span id="totTs" class="figures">311</span>
               </div>
+              <div class="item-info">
+                <p id="on-line-department" class="trans-auto">На линии, шт.</p>
+                <p id="OnLine" class="figures">124</p>
+              </div>
+              <div class="item-info">
+                <p id="on-repair" class="trans-auto">На ремонте, шт.</p>
+                <p id="OnRep" class="figures">3</p>
+              </div>
+              <div class="item-info">
+                <p id="on-to" class="trans-auto">На ТО, шт.</p>
+                <p id="onTo" class="figures">4</p>
+              </div>
+            </div>
 
+            <div class="div-transport">
+              <hr/ class="hr-trans">
+              <div class="item-info transort-department">
+                <div class="transport-title">
+                  <span class="span-h3-filial"><img src="yan/img/car-1.svg" alt="#" class="span-yan/img-h3-filial"></span>
+                  <p id="passenger-car" class="p-type-transport">Легковые</p>
+                </div>
+                 <p id="passCar" class="p-quantity">40</p>
+              </div>
+              <hr/ class="hr-trans">
+              <div class="item-info transort-department">
+                <div class="transport-title">
+                  <span class="span-h3-filial"><img src="yan/img/car-2.svg" alt="#" class="span-yan/img-h3-filial"></span>
+                  <p id="freight" class="p-type-transport">Грузовые</p>
+                </div>
+                <p id="freightCar" class="p-quantity">221</p>
+              </div>
+              <hr/ class="hr-trans">
+              <div class="item-info transort-department">
+                <div class="transport-title">
+                  <span class="span-h3-filial"><img src="yan/img/car-3.svg" alt="#" class="span-yan/img-h3-filial"></span>
+                  <p id="bus" class="p-type-transport">Автобусы</p>
+                </div>
+                <p id="busCar" class="p-quantity">20</p>
+              </div>
+              <hr/ class="hr-trans">
+              <div class="item-info transort-department">
+                <div class="transport-title">
+                  <span class="span-h3-filial"><img src="yan/img/car-4.svg" alt="#" class="span-yan/img-h3-filial"></span>
+                  <p id="spec" class="p-type-transport">Спецтехника</p>
+                </div>
+                <p id="specCar" class="p-quantity">12</p>
+              </div>
+              <hr/ class="hr-trans">
+            </div>
           </div>
 
           <div class="">
@@ -290,63 +282,6 @@ $regions = file_get_contents('regions.json');
               <p id="terminals-2" class="p-meanings-2nd"><span class="span-figures-2nd">110</span><br/>Терминалов</p>
             </div>
           </div>
-              <!-- <div id="indicators-2" class="indicators-class">
-                <div class="d-flex mb15 mt20 align-items-center">
-                <span class="span-h3-2nd"><img src="yan/img/pie.svg" alt="#" class="span-yan/img-h3-3nd"></span>
-                <h3 id="h3-indicator-2" class="h3-main-2nd">Показатели компании</h3>
-                  </div>
-              <div class="">
-                <div id="circle1-2" class="circle">
-                  <p class="p-bar">bar</p>
-                </div>
-                <div class="div-bar-text">
-                  <p id="filed-2" class="p-bar-text">Поданы через АС<br/>"Авто-Контроль", %</p>
-                </div>
-                <br/><br/>
-              </div>
-                <div class="">
-                <div id="circle2-2" class="circle">
-                  <p class="p-bar">bar</p>
-                </div>
-                <div class="div-bar-text">
-                  <p id="processed-2" class="p-bar-text-str">Обработано ПЛ, %</p>
-                </div>
-                <br/><br/>
-              </div>
-                <div class="">
-                <div id="circle3-2" class="circle">
-                  <p class="p-bar">bar</p>
-                </div>
-                <div class="div-bar-text">
-                  <p id="dtp-2" class="p-bar-text">ДТП по вине<br/>компании, %</p>
-                </div>
-                <br/><br/>
-              </div>
-                <div class="">
-                <div id="circle4-2" class="circle">
-                  <p class="p-bar">bar</p>
-                </div>
-                <div class="div-bar-text">
-                  <p id="mileage-2" class="p-bar-text">Принятый пробег<br/>по БСМТ, %</p>
-                </div>
-                <br/><br/>
-                  </div>
-              <div class="">
-                <div id="circle5-2" class="circle">
-                  <p class="p-bar">bar</p>
-                </div>
-                <div class="div-bar-text">
-                  <p id="sla-2" class="p-bar-text-str">SLA филиала, %</p>
-                </div>
-              </div>
-
-              <div class="div-meanings div-pr25">
-                <p id="lmch-2" class="p-meanings-2nd"><span class="span-figures-2nd">5,1</span> л\мч<br/>ТМЧ</p>
-              </div>
-              <div class="div-meanings">
-                <p id="terminals-2" class="p-meanings-2nd"><span class="span-figures-2nd">110</span><br/>Терминалов</p>
-              </div>
-            </div> -->
           </div>
       </section>
 
@@ -360,16 +295,16 @@ $regions = file_get_contents('regions.json');
               <img src="yan/img/logo.svg" alt="">
             </div>
           </div>
-          <div class="level-menu">
+          <div id="ts" class="level-menu">
             <span id="level-menu-company" class="text-level-menu">Компания</span>
             <img src="yan/img/arrow.svg" alt="">
-            <span id="level-menu-company" class="text-level-menu">Филиал</span>
+            <span id="level-menu-department" class="text-level-menu">Филиал</span>
             <img src="yan/img/arrow.svg" alt="">
-            <span id="level-menu-company" class="text-level-menu">Автоколонна</span>
+            <span id="level-menu-autocolumn" class="text-level-menu">Автоколонна</span>
             <img src="yan/img/arrow.svg" alt="">
-            <span id="level-menu-company" class="text-level-menu">Участок</span>
+            <span id="level-menu-spot" class="text-level-menu">Участок</span>
             <img src="yan/img/arrow.svg" alt="">
-            <span id="level-menu-company" class="text-level-menu">Транспортное средство</span>
+            <span id="level-menu-ts" class="text-level-menu">Транспортное средство</span>
           </div>
           <div class="title-ts">
             <span id="nameTS" class="title-ts-text">ТС №93 BMW</span>
@@ -474,6 +409,21 @@ $regions = file_get_contents('regions.json');
          */
         window.currentElement = null;
 
+        /**
+         * Bread Crumbs
+         * @type {*|jQuery|HTMLElement}
+         */
+        var levelMenuTs = $('div.level-menu#ts'),
+            levelMenuTsDepartment = $('div.level-menu#ts > span#level-menu-department'),
+            levelMenuTsAutocolumn = $('div.level-menu#ts > span#level-menu-autocolumn'),
+            levelMenuTsSpot = $('div.level-menu#ts > span#level-menu-spot'),
+            levelMenuTsTs = $('div.level-menu#ts > span#level-menu-ts'),
+            levelMenuDepartment = $('div.level-menu#department'),
+                addLevelInBreadCrumbs = function(level, text) {
+                  levelMenuDepartment.innerHTML += '<img src="yan/img/arrow.svg" alt=""><span id="level-menu-'+level+'" class="text-level-menu">'+text+'</span>';
+                };
+            levelMenuDepDepartment = $('div.level-menu#department > span#level-menu-department');
+
         var setBoundsForPoints = function(map, array) {
             if(array.length === 1) {
                 return map.setCenter(array[0].geometry._coordinates, 11);
@@ -546,7 +496,7 @@ $regions = file_get_contents('regions.json');
                       iconImageOffset: [-24, -24],
                       iconContentLayout: MyIconContentLayout
                     });
-                    for (var l=0, c_len = cars.length, c_array = [];l < c_len;l++) {
+                    for (var l=0, c_len = cars.length, c_array = [], c_dep, c_autocolumn, c_spot;l < c_len;l++) {
                         c_point = new ymaps.Placemark(cars[l].geometry.coordinates);
                         c_point.RTOptions = {
                             id: cars[l].id,
@@ -559,21 +509,28 @@ $regions = file_get_contents('regions.json');
                         };
                         c_point.RTInfo = {
                             nameTS: cars[l].brand,
-                            oilChangeDist: '12 000 км',
-                            tireChangeDist: '43 000 км',
-                            accChangeDist: '25 ч',
-                            toChangeDist: '456 000 км',
-                            lb1: cars[l].brand.length/10,
-                            lb2: cars[l].brand.length/16,
-                            lb3: cars[l].brand.length/12,
-                            lb4: cars[l].brand.length/14
+                            oilChangeDist: accounting.formatNumber(cars[l].oilChangeDist, 0, ' ') + ' км',
+                            tireChangeDist: accounting.formatNumber(cars[l].tireChangeDist, 0, ' ') + ' км',
+                            accChangeDist: accounting.formatNumber(cars[l].accChangeDist, 0, ' ') + ' ч',
+                            toChangeDist: accounting.formatNumber(cars[l].toChangeDist, 0, ' ') + ' км',
+                            lb1: cars[l].lbs.lb1,
+                            lb2: cars[l].lbs.lb2,
+                            lb3: cars[l].lbs.lb3,
+                            lb4: cars[l].lbs.lb4
                         };
+                        c_dep = regions[i];
+                        c_autocolumn = autocolumns[j];
+                        c_spot = spots[k];
                         c_point.events.add('click', function(e) {
                             var target = e.originalEvent.target;
                             sectionDepartment.classList.add('hide');
                             sectionCompany.classList.add('hide');
                             sectionTS.classList.remove('hide');
                             newInfoTs(target.RTInfo);
+                            levelMenuTsDepartment.innerText = c_dep.regionName;
+                            levelMenuTsAutocolumn.innerText = c_autocolumn.regionName;
+                            levelMenuTsSpot.innerText = c_spot.regionName;
+                            levelMenuTsTs.innerText = target.RTInfo.nameTS + ' ТС №' + target.RTOptions.id;
                         });
                         c_array.push(c_point);
                     }
@@ -581,12 +538,14 @@ $regions = file_get_contents('regions.json');
                         id: spots[k].id,
                         master: a_point,
                         children: c_array,
-                        regionType: 's'
+                        regionType: 's',
+                        regionName: spots[k].regionName
                     };
                     s_point.events.add('click', function(e) {
                         var target = e.originalEvent.target;
                         window.currentLevel = 3;
                         actionClickPoint(myMap, target);
+                        addLevelInBreadCrumbs('spot',target.RTOptions.regionName);
                     });
                     s_array.push(s_point);
                 } // Iteration through the spots  for (var k = 0, s_len = spots.length, s_array = [];k < s_len;k++) {
@@ -594,12 +553,14 @@ $regions = file_get_contents('regions.json');
                     id: autocolumns[j].id,
                     master: d_point,
                     children: s_array,
-                    regionType: 'a'
+                    regionType: 'a',
+                    regionName: autocolumns[j].regionName
                 };
                 a_point.events.add('click', function(e) {
                     var target = e.originalEvent.target;
                     window.currentLevel = 2;
                     actionClickPoint(myMap, target);
+                    addLevelInBreadCrumbs('autocolumn',target.RTOptions.regionName);
                 });
                 a_array.push(a_point);
             } // Iteration through the autocolumns  for(var j = 0, a_len = autocolumns.length, a_array = [];j < a_len;j++) {
@@ -607,7 +568,8 @@ $regions = file_get_contents('regions.json');
                 id: regions[i].id,
                 master: false,
                 children: a_array,
-                regionType: 'd'
+                regionType: 'd',
+                regionName: regions[i].regionName
             };
             d_point.events.add('click', function(e) {
                 var target = e.originalEvent.target;
@@ -616,6 +578,8 @@ $regions = file_get_contents('regions.json');
                 sectionCompany.classList.add('hide');
                 sectionTS.classList.add('hide');
                 sectionDepartment.classList.remove('hide');
+                console.log(levelMenuDepDepartment);
+                levelMenuDepDepartment.innerText = target.RTOptions.regionName;
             });
             d_array.push(d_point);
             myMap.geoObjects.add(d_point);
@@ -633,8 +597,15 @@ $regions = file_get_contents('regions.json');
                 });
                 setBoundsForPoints(myMap, d_array);
                 myMap.controls.remove(oneLevelLess);
+                sectionDepartment.classList.add('hide');
+                sectionCompany.classList.remove('hide');
                 return true;
+            } else if (window.currentLevel === 2) {
+                sectionTS.classList.add('hide');
+                sectionDepartment.classList.remove('hide');
             }
+            levelMenuDepartment.lastElementChild.remove();
+            levelMenuDepartment.lastElementChild.remove();
             var
                 currentLevelElements = window.currentElement.RTOptions.master.RTOptions.children,
                 currentChildren = window.currentElement.RTOptions.children,
@@ -651,6 +622,7 @@ $regions = file_get_contents('regions.json');
 
     }); // ymaps.ready(function() {
 </script>
+<script src="js_new/accounting.min.js"></script>
 <script src="js_new/progressbar.min.js"></script>
 <script src="js_new/main.js"></script>
 </html>

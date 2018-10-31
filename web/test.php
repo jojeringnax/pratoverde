@@ -613,6 +613,9 @@ $regions = file_get_contents('regions.json');
                 d_array.forEach(function(el) {
                    myMap.geoObjects.add(el);
                 });
+                a_array.forEach(function(el) {
+                   myMap.geoObjects.remove(el);
+                });
                 setBoundsForPoints(myMap, d_array);
                 myMap.controls.remove(oneLevelLess);
                 sectionDepartment.classList.add('hide');
@@ -637,7 +640,36 @@ $regions = file_get_contents('regions.json');
             setBoundsForPoints(myMap, currentLevelElements);
             window.currentElement = currentElementAfterClick;
         });
+        myMap.events.add('boundschange', function(e) {
+            if (e.get('newZoom') >= 12) {
+                if(window.currentElement === null) {
+                    d_array.forEach(function(el) {
+                        myMap.geoObjects.remove(el);
+                    });
+                } else {
+                    window.currentElement.RTOptions.children.forEach(function (el) {
+                        myMap.geoObjects.remove(el);
+                    });
+                }
+                c_array.forEach(function(el) {
+                    myMap.geoObjects.add(el);
+                });
+            } else {
+                c_array.forEach(function(el) {
+                    myMap.geoObjects.remove(el);
+                });
 
+                if(window.currentElement === null) {
+                    d_array.forEach(function(el) {
+                        myMap.geoObjects.add(el);
+                    });
+                } else {
+                    window.currentElement.RTOptions.children.forEach(function (el) {
+                        myMap.geoObjects.add(el);
+                    });
+                }
+            }
+        });
     }); // ymaps.ready(function() {
 </script>
 <script src="js_new/accounting.min.js"></script>
